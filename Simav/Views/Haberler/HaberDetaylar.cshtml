@@ -1,0 +1,56 @@
+﻿@model Simav.Models.Haberler
+
+@{
+    ViewData["Title"] = "HaberDetaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textAreaRO.js"></script>
+<h1>HaberDetaylar</h1>
+
+<div>
+    <h4>Haberler</h4>
+    <hr />
+    <dl class="row table table-secondary">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.KisaAciklama)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.KisaAciklama)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+        <dd class = "col-sm-8">
+           <textarea id="local-upload">@Html.DisplayFor(model => model.Icerik)</textarea>
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Resim)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Resim)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Onay)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Onay)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.HaberlerId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

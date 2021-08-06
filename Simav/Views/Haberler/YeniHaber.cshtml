@@ -1,0 +1,58 @@
+﻿@model Simav.Models.Haberler
+
+@{
+    ViewData["Title"] = "YeniHaber";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="~/js/HaberlerCheckBoxJS.js"></script>
+<h1>YeniHaber</h1>
+
+<h4>Haberler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8" style="background-color:white">
+        <form asp-action="YeniHaber">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ad" class="control-label"></label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KisaAciklama" class="control-label"></label>
+                <input asp-for="KisaAciklama" class="form-control" />
+                <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <textarea asp-for="Icerik" class="form-control" id="local-upload" ></textarea>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim" class="control-label"></label>
+                <input asp-for="Resim" class="form-control" />
+                <span asp-validation-for="Resim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tarih" class="control-label"></label>
+                <input asp-for="Tarih" class="form-control" />
+                <span asp-validation-for="Tarih" class="text-danger"></span>
+            </div>
+            @*<div class="myAccountCheckboxHolder" id="showCheckoutHistoryCheckbox">
+                <input asp-for="Onay" checked="checked" id="cbOnayla" value="0" type="checkbox">
+                <label asp-for="Onay" class="checkLabel">Onayla</label>
+            </div> *@  
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

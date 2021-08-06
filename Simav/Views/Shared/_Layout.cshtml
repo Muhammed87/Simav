@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Simav Beldiyesi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+    <!-- Vendor CSS -->
+    <link href="~/vendor/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/vendor/owlcarousel/owl.theme.default.css" rel="stylesheet" />
+    <link href="~/vendor/owlcarousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <!-- Theme CSS -->
+    <link href="~/css/theme-animate.css" rel="stylesheet" />
+    <link href="~/css/theme-blog.css" rel="stylesheet" />
+    <link href="~/css/theme-elements.css" rel="stylesheet" />
+    <link href="~/css/theme-shop.css" rel="stylesheet" />
+    <link href="~/css/theme.css" rel="stylesheet" />
+
+    <!-- Current Page CSS -->
+
+    <link href="~/vendor/circle-flip-slideshow/css/component.css" rel="stylesheet" />
+    <link href="~/vendor/nivo-slider/nivo-slider.css" rel="stylesheet" />
+    <link href="~/vendor/nivo-slider/default/default.css" rel="stylesheet" media="screen" />
+
+    <!-- Skin CSS -->
+    <link href="~/css/skins/default.css" rel="stylesheet" />
+    <!-- Theme Custom CSS -->
+    <link href="~/css/custom.css" rel="stylesheet" />
+
+    <!-- Head Libs -->
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <!--[if IE]>
+        <link rel="stylesheet" href="css/ie.css">
+    <![endif]-->
+    <!--[if lte IE 8]>
+        <script src="vendor/respond/respond.js"></script>
+        <script src="vendor/excanvas/excanvas.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="body">
+        <header id="header">
+            <div class="container">
+                <div class="logo">
+                    <a href="default.asp">
+                        <img alt="Porto" width="192" height="81" data-sticky-width="102" data-sticky-height="40" src="~/img/belediyelogo.png">
+                    </a>
+                </div>
+                <div class="search">
+                    <form id="searchForm" action="page-search-results.html" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control search" name="q" id="q" placeholder="Arama..." required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <nav>
+                    <ul class="nav nav-pills nav-top">
+
+                        <li>
+                            <a href="iletisim.asp"><i class="fa fa-angle-right"></i>İletişim</a>
+                        </li>
+                        <li class="phone">
+                            <span><i class="fa fa-phone"></i>(274) 513-7006 - 07 - 08 - 09</span>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="navbar-collapse nav-main-collapse collapse">
+                <div class="container">
+                    <ul class="social-icons">
+
+
+                        <li class="facebook"><a href="https://www.facebook.com/bldsimav/" target="_blank" title="Facebook">Facebook</a></li>
+                        <li class="twitter"><a href="https://twitter.com/simavbelediyesi" target="_blank" title="Twitter">Twitter</a></li>
+                        <li class="youtube"><a href="https://www.youtube.com/channel/UCkeuFNYxpbYdd5R9o18mLXg/videos" target="_blank" title="Youtube">Youtube</a></li>
+                        <li class="instagram"><a href="https://www.instagram.com/simavbelediyesi/" target="_blank" title="Facebook">Instagram</a></li>
+                    </ul>
+                    <nav class="nav-main mega-menu">
+                        <ul class="nav nav-pills nav-main" id="mainMenu">
+                            <li>
+                                <a href="default.asp">ANA SAYFA</a>
+                            </li>
+
+                            <li class="dropdown mega-menu-item mega-menu-fullwidth">
+                                <a class="dropdown-toggle" href="#">
+                                    Kurumsal
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="mega-menu-content">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <ul class="sub-menu">
+                                                        <li>
+                                                            <span class="mega-menu-sub-title">İDARE</span>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="baskanyardimcilari.asp">Başkan Yardımcıları</a></li>
+                                                                <li><a href="mudurler.asp">Müdürler</a></li>
+                                                                <li><a href="yonetimsema.asp">Yönetim Şeması</a></li>
+                                                                <li><a href="meclis.asp">Belediye Meclisi</a></li>
+                                                                <li><a href="komisyonlar.asp">Meclis Komisyonları</a></li>
+                                                                <li><a href="meclisgundemleri.asp">Meclis Gündemleri</a></li>
+                                                                <li><a href="mecliskararlari.asp">Meclis Kararları</a></li>
+                                                                <li><a href="encumen.asp">Encümen Üyeleri</a></li>
+                                                                <li><a href="muhtarlar.asp">Muhtarlar</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul class="sub-menu">
+                                                        <li>
+                                                            <span class="mega-menu-sub-title">KURUM</span>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="tarihce.asp">Tarihçe</a></li>
+                                                                <li><a href="vizyonmisyon.asp">Vizyon ve Misyon </a></li>
+                                                                <li><a href="kurumsalkimlik.asp">Kurumsal Kimlik</a></li>
+                                                                <li><a href="yonetmelikler.asp">Yönetmelikler</a></li>
+                                                                <li><a href="belediyebaskanlari.asp">Belediye Başkanları</a></li>
+                                                                <li><a href="belediyesirketleri.asp">Belediye Şirketleri</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul class="sub-menu">
+                                                        <li>
+                                                            <span class="mega-menu-sub-title">SUNUM</span>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="projeler.asp">Projeler</a></li>
+                                                                <li><a href="faaliyetraporlari.asp">Faaliyet Raporları</a></li>
+                                                            </ul>
+
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    E-BELEDİYE
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+
+                                <!-- 1- Projeler Başla	-->
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://e-hizmet.simav.bel.tr/#/modules/ortak/borclar" style="font-size:17px;width:250px;"><i class="fa fa-turkish-lira"></i> Borç Sorgulama/Ödeme</a></li>
+                                    <br>
+
+                                    <li><a href="https://e-hizmet.simav.bel.tr/#/modules/sifresiz/crm-belge-dogrulama" style="font-size:17px;width:250px;"><i class="fa fa-print"></i> E-İmza Evrak Doğrulama</a></li>
+                                    <br>
+                                    <li><a href="https://e-hizmet.simav.bel.tr/#/modules/sifresiz/crm-sicil-ogrenme" style="font-size:17px;width:250px;"><i class="fa fa-print"></i> Sicil Öğrenme</a></li>
+                                    <br>
+                                    <li><a href="talimatliodeme.asp" style="font-size:17px;width:250px;"><i class="fa fa-qrcode"></i> Talimatlı Ödeme</a></li>
+                                    <br>
+                                    <li><a href="https://www.simaveynalbisikletfestivali.com/" target="_blank" style="font-size:14px;width:250px;"><i class="fa fa-print"></i> Simav Eynal Bisiklet Festivali</a></li>
+                                    <br>
+
+                                </ul>
+                                <!-- 1- Projeler Başla	-->
+                            </li>
+
+
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    İLÇEMİZ	<i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="ismininanlami.asp">İsminin Anlamı</a></li>
+                                    <li><a href="ilcetarihi.asp">Tarihi</a></li>
+                                    <li><a href="eynalkaplicalari.asp">Eynal Kaplıcaları</a></li>
+                                    <li><a href="seyirterasi.asp">Karşıyaka Seyir Terası</a></li>
+                                    <li><a href="kentmuzesi.asp">Simav Kent Müzesi</a></li>
+                                    <li><a href="golcuk.asp">Gölcük Mesire Alanı</a></li>
+                                    <li><a href="tarihiyerler.asp">Tarihi Yerler</a></li>
+                                    <li><a href="gecmistesimav.asp">Geçmişte Simav</a></li>
+                                </ul>
+                            </li>
+
+
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    İLETİŞİM
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li><a href="iletisim.asp">İletişim</a></li>
+                                    <li><a href="birimtelefon.asp">Birim Telefonları</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer id="footer" class="color">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="newsletter">
+                            <h4>Linkler</h4>
+                            <p>
+                                <a href="haberler.asp">Haberler</a><br>
+                                <a href="Duyurular.asp">Duyurular</a><br>
+                                <a href="ihaleler.asp">İhaleler</a><br>
+                                <a href="Vefatlar.asp">Vefat İlanları</a><br>
+                            </p>
+
+
+
+                            <div class="alert alert-danger hidden" id="newsletterError"></div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Linkler</h4>
+                        <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": "", "count": 2}'>
+                            <p>Lütfen bekleyin...</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-details">
+                            <h4>İletişim</h4>
+                            <ul class="contact">
+                                <li><p><i class="fa fa-map-marker"></i> <strong>Adres:</strong> Tabakhane Mah. Belediye Meydanı No:9 SİMAV/KÜTAHYA</p></li>
+                                <li><p><i class="fa fa-phone"></i> <strong>Telefon:</strong> 0 (274) 513 70 06 - 07 - 08 - 09</p></li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-envelope"></i> <strong>E-Posta:</strong> <a href="mailto:
+info@simav.bel.tr">
+                                            info@simav.bel.tr
+                                        </a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Sosyal Medya</h4>
+                        <div class="social-icons">
+                            <ul class="social-icons">
+                                <li class="facebook"><a href="https://www.facebook.com/bldsimav/" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
+                                <li class="twitter"><a href="https://twitter.com/simavbelediyesi" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
+                                <li class="youtube"><a href="https://www.youtube.com/channel/UCkeuFNYxpbYdd5R9o18mLXg/videos" target="_blank" data-placement="bottom" data-tooltip title="Youtube">Youtube</a></li>
+                                <li class="instagram"><a href="https://www.instagram.com/simavbelediyesi/" target="_blank" title="Facebook">Instagram</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a href="default.asp" class="logo">
+                                <img alt="Porto Website Template" class="img-responsive" src="~/img/logo-footer.png">
+                            </a>
+                        </div>
+                        <div class="col-md-7">
+                            <p>
+                                Simav Belediyesi - Bilgi İşlem © @DateTime.Now.Year
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <nav id="sub-menu">
+                                <ul>
+                                    <li><a href="birimtelefon.asp">Birim Telefonları</a></li>
+                                    <li><a href="iletisim.asp">İletişim</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Vendor -->
+    <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/vendor/jquery.appear/jquery.appear.js"></script>
+    <script src="~/vendor/jquery.easing/jquery.easing.js"></script>
+    <script src="~/vendor/jquery-cookie/jquery-cookie.js"></script>
+    <script src="~/vendor/bootstrap/bootstrap.js"></script>
+    <script src="~/vendor/common/common.js"></script>
+    <script src="~/vendor/jquery.validation/jquery.validation.js"></script>
+    <script src="~/vendor/jquery.stellar/jquery.stellar.js"></script>
+    <script src="~/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/vendor/jquery.gmap/jquery.gmap.js"></script>
+    <script src="~/vendor/isotope/jquery.isotope.js"></script>
+    <script src="~/vendor/owlcarousel/owl.carousel.js"></script>
+    <script src="~/vendor/jflickrfeed/jflickrfeed.js"></script>
+    <script src="~/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="~/vendor/vide/vide.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/js/theme.js"></script>
+
+    <!-- Specific Page Vendor and Views -->
+    <script src="~/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+    <script src="~/vendor/nivo-slider/jquery.nivo.slider.js"></script>
+    <script src="~/js/views/view.home.js"></script>
+
+
+    <!-- Admin Extension -->
+    <script src="~/admin/assets/javascripts/theme.admin.extension.js"></script>
+
+    <!-- Admin Extension Examples -->
+    <script src="~/admin/assets/vendor/jquery-appear/jquery.appear.js"></script>
+    <script src="~/admin/assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
+    <script src="~/admin/assets/vendor/flot/jquery.flot.js"></script>
+    <script src="~/admin/assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
+    <script src="~/admin/assets/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="~/admin/assets/vendor/flot/jquery.flot.categories.js"></script>
+    <script src="~/admin/assets/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="~/admin/assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="~/admin/assets/vendor/raphael/raphael.js"></script>
+    <script src="~/admin/assets/vendor/morris/morris.js"></script>
+    <script src="~/admin/assets/vendor/gauge/gauge.js"></script>
+    <script src="~/admin/assets/vendor/snap-svg/snap.svg.js"></script>
+    <script src="~/admin/assets/vendor/liquid-meter/liquid.meter.js"></script>
+
+    <!-- Admin Extension Examples -->
+    <script src="~/admin/assets/javascripts/ui-elements/examples.charts.js" /></script>
+
+    <!-- Theme Custom -->
+    <script src="~/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="js/theme.init.js"></script>
+
+    <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-12345678-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+     -->
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

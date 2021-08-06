@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Kullanici Bilgileri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/sidebars.css" rel="stylesheet" />
+<link href="~/css/AdminMenu.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="row">
+    <div class="col-sm-4 col-md-3 sidebar">
+        <div class="mini-submenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+        <div class="list-group">
+            <span href="#" class="list-group-item active">
+                Yönetici Paneli
+                <span class="pull-right" id="slide-submenu">
+                    <i class="fa fa-times"></i>
+                </span>
+            </span>
+            <a asp-controller="Haberler" asp-action="Index" class="list-group-item">
+                <i class="fa fa-comment-o"></i> Haberler
+            </a>
+            <a asp-controller="Duyurular" asp-action="Index" class="list-group-item">
+                <i class="fa fa-search"></i> Duyurular
+            </a>
+            <a asp-controller="Bilgilendirme" asp-action="Index" class="list-group-item">
+                <i class="fa fa-user"></i> Bilgilendirme
+            </a>
+            <a asp-controller="Etkinlikler" asp-action="Index" class="list-group-item">
+                <i class="fa fa-folder-open-o"></i> Etkinlikler 
+            </a>
+            <a asp-controller="Ilanlar" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Ilanlar 
+            </a>
+            <a asp-controller="Olumler" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Olumler 
+            </a>
+            <a asp-controller="Personel" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Personel 
+            </a>
+            <a asp-controller="Projeler" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Projeler 
+            </a>
+            <a asp-controller="Sikayetler" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Sikayetler 
+            </a>
+            <a asp-controller="Videolar" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Videolar 
+            </a>
+            <a asp-controller="Kullanici" asp-action="Index" class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Kullanci İşlemleri 
+            </a>
+        </div>
+    </div>
+
+    <div class="col-8">
+        @RenderBody()
+    </div>
+</div>
+<script src="~/vendor/bootstrap/js/popper.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/js/sidebars.js"></script>
+<script src="~/js/KullaniciJS.js"></script>
