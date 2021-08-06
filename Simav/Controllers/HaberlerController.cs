@@ -85,5 +85,23 @@ namespace Simav.Controllers
             }
             return View(haber);
         }
+        public JsonResult HaberSil(int pId)
+        {
+            try
+            {
+                var haber=_service.GetById(pId);
+                if (haber == null)
+                {
+                    return Json(new { basarili = false, id=pId ,mesaj = "İşlem Başarısız" });
+                }
+                haber.Durum = (byte)Enums.KayitDurumu.Silinmiş;
+                _service.Update(haber);
+            }
+            catch (Exception)
+            {
+                return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
+            }
+            return Json(new { basarili = true, id = pId , mesaj = "İşlem Başarılı" });
+        }
     }
 }

@@ -13,5 +13,10 @@ namespace Simav.Common
             Onaylanmis = 1,
             OnayBekliyor = 2,
         }
+        public enum KayitDurumu
+        {
+            Aktif = 1,
+            Silinmiş = 2,
+        }
     }
 }
