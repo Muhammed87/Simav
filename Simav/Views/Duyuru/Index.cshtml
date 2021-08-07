@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Simav.Models.Duyuru>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="YeniDuyuru">Yeni Duyuru Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KisaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KisaAciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="DuyuruGuncelle" asp-route-id="@item.DuyuruId">Duzenle</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.DuyuruId">Detaylar</a>
+                <a class="btn btn-danger"asp-action="Delete" asp-route-id="@item.DuyuruId">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

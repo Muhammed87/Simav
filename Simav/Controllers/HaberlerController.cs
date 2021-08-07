@@ -67,24 +67,24 @@ namespace Simav.Controllers
             {
                 return NotFound();
             }
-            var haber = _service.GetById(id.Value);
-            if (haber == null)
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
             {
                 return NotFound();//Bulunamadı
             }
-            return View(haber);
+            return View(entity);
         }
         [HttpPost]
-        public IActionResult HaberGuncelle(Haberler haber)
+        public IActionResult HaberGuncelle(Haberler entity)
         {
             if (ModelState.IsValid)
             {
-                haber.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
-                haber.DegistirmeTarihi = DateTime.Now;
-                _service.Update(haber);
+                entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
+                entity.DegistirmeTarihi = DateTime.Now;
+                _service.Update(entity);
                 return RedirectToAction("Index");
             }
-            return View(haber);
+            return View(entity);
         }
         public JsonResult HaberSil(int pId)
         {

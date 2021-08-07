@@ -18,6 +18,7 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        [AutFilter]
         [HttpGet]
         public IActionResult Index()
         {

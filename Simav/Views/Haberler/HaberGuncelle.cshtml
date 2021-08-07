@@ -6,6 +6,7 @@
 }
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="~/js/textArea.js"></script>
+<script src="~/js/HaberlerCheckBoxJS.js"></script>
 <h1>HaberGuncelle</h1>
 
 <h4>Haberler</h4>
@@ -39,10 +40,10 @@
                 <span asp-validation-for="Tarih" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Onay" class="control-label"></label>
-                <input asp-for="Onay" class="form-control" />
-                <span asp-validation-for="Onay" class="text-danger"></span>
-            </div>
+                <input asp-for="Onay" id="hdOnayla" type="hidden" value="0" class="form-check-input">
+                <input id="cbOnayla" checked="checked" type="checkbox" />
+                <label asp-for="Onay" class="checkLabel">Onayla</label>
+            </div> 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
