@@ -1,12 +1,10 @@
-﻿<script>
-    jQuery(document).ready(function() {
-        jQuery('#showCheckoutHistory').change(function () {
+﻿jQuery(document).ready(function() {
+        jQuery('#cbOnayla').change(function () {
             if ($(this).prop('checked')) {
-                $('#showCheckoutHistory').Value = 1;
+                $('#hdOnayla').val('1');
             }
             else {
-                $('#showCheckoutHistory').Value = 0;
+                $('#hdOnayla').val('0');
             }
         });
 });
-</script>

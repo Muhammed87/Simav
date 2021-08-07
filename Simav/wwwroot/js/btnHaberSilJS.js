@@ -49,15 +49,21 @@ function SilmeIslemi(id) {
 function HesaplamaBasarili(veri) {
     //alert("İşlem Başarıyla Tamamlandı");
     swal({
-        title: "Hesaplama",
-        text: veri.mesaj,
-        type: "success"
+        title: "Uyarı",
+        text: "Silme işlemi Başarıyla Gerçekleşti!",
+        type: "warning",
+        showCancelButton: false, //iptal butonunu göster
+        confirmButtonText: "Onayla", //Onay vereceğimiz butonun üzerinde ne görünsün =>(basılırsa true)
+        showLoaderOnConfirm: true //Yükleniyor ifadesi görünsün mü?
+    }, function (isConfirm) {
+        location.reload();
+        
     });
-    toastr.success("İşlem Başarıyla Tamamlandı");
+
 }
 function HesaplamaBasarisiz(mesaj) {
     swal({
-        title: "Hesaplama",
+        title: "Silme İşlemi",
         text: mesaj,
         type: "warning"
     });

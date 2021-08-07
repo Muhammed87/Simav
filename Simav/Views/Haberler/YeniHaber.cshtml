@@ -7,8 +7,9 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="~/js/textArea.js"></script> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="~/js/HaberlerCheckBoxJS.js"></script>
-<h1>YeniHaber</h1>
+<script src="~/js/HaberlerCheckBoxJS.js"></script> 
+
+<h1>Yeni Haber</h1>
 
 <h4>Haberler</h4>
 <hr />
@@ -41,10 +42,11 @@
                 <input asp-for="Tarih" class="form-control" />
                 <span asp-validation-for="Tarih" class="text-danger"></span>
             </div>
-            @*<div class="myAccountCheckboxHolder" id="showCheckoutHistoryCheckbox">
-                <input asp-for="Onay" checked="checked" id="cbOnayla" value="0" type="checkbox">
+            <div class="form-group">
+                <input asp-for="Onay" id="hdOnayla" type="hidden" value="0" class="form-check-input">
+                <input id="cbOnayla" checked="checked" type="checkbox" />
                 <label asp-for="Onay" class="checkLabel">Onayla</label>
-            </div> *@  
+            </div>  
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

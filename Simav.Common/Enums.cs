@@ -10,13 +10,13 @@ namespace Simav.Common
     {
         public enum HaberDurumu
         {
+            OnayBekliyor = 0,
             Onaylanmis = 1,
-            OnayBekliyor = 2,
         }
         public enum KayitDurumu
         {
-            Aktif = 1,
-            Silinmiş = 2,
+            Aktif = 0,
+            Silinmiş = 1,
         }
     }
 }

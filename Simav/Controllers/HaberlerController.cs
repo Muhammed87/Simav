@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Simav.Controllers
 {
+    [AutFilter]
     public class HaberlerController : Controller
     {
         private readonly IService<Haberler> _service;
@@ -17,10 +18,11 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        [AutFilter]
         public IActionResult Index()
         {
             ViewBag.Baslik = "Haber Listesi";
-            var haberListesi = _service.GetAll();
+            var haberListesi = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis));
             return View(haberListesi);
         }
         [HttpGet]
@@ -36,11 +38,10 @@ namespace Simav.Controllers
         {
             haber.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             haber.DegistirmeTarihi = DateTime.Now;
-            haber.Durum = (byte)Enums.HaberDurumu.OnayBekliyor;
             haber.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
             haber.KayıtTarihi = DateTime.Now;
             _service.Save(haber);
-            return RedirectToAction("Haberler", "Index");
+            return RedirectToAction("Index", "Haberler");
         }
         [AutFilter]
         [HttpGet]
@@ -101,7 +102,9 @@ namespace Simav.Controllers
             {
                 return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
             }
-            return Json(new { basarili = true, id = pId , mesaj = "İşlem Başarılı" });
+           
+           RedirectToAction("Haberler", "Index");
+           return Json(new { basarili = true, id = pId , mesaj = "İşlem Başarılı" }); 
         }
     }
 }
