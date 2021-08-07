@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
 <h1>Index</h1>
 
 <p>
@@ -37,10 +43,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Tarih)
             </td>
+
             <td>
                 <a class="btn btn-secondary" asp-action="DuyuruGuncelle" asp-route-id="@item.DuyuruId">Duzenle</a>
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.DuyuruId">Detaylar</a>
-                <a class="btn btn-danger"asp-action="Delete" asp-route-id="@item.DuyuruId">Sil</a>
+                <a class="btn btn-info" asp-action="DuyuruDetaylar" asp-route-id="@item.DuyuruId">Detaylar</a>
+                <button type="button" id="btnDelete" value="@item.DuyuruId" onclick="reply_click(this.value)" class="btn btn-danger" >Delete</button> 
             </td>
         </tr>
 }

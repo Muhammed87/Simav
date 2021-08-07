@@ -72,5 +72,38 @@ namespace Simav.Controllers
             }
             return View(entity);
         }
+        [AutFilter]
+        [HttpGet]
+        public IActionResult DuyuruDetaylar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+            return View(entity);
+        }
+        public JsonResult DuyuruSil(int pId)
+        {
+            try
+            {
+                var entity = _service.GetById(pId);
+                if (entity == null)
+                {
+                    return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
+                }
+                entity.Durum = (byte)Enums.KayitDurumu.Silinmiş;
+                _service.Update(entity);
+            }
+            catch (Exception)
+            {
+                return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
+            }
+            return Json(new { basarili = true, id = pId, mesaj = "İşlem Başarılı" });
+        }
     }
 }

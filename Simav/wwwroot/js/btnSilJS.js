@@ -1,10 +1,8 @@
-﻿$(document).ready(function () {
-    $('#btnDelete').click(function () {
-    //swal({}, function () { });
-
+﻿function reply_click(clicked_id) {
+    id = clicked_id;
     swal({
         title: "Onaylama",
-        text: "Haber Silinecektir",
+        text: "Duyuru Silinecektir",
         type: "warning",
         showCancelButton: true, //iptal butonunu göster
         confirmButtonText: "Evet", //Onay vereceğimiz butonun üzerinde ne görünsün =>(basılırsa true)
@@ -13,31 +11,30 @@
     }, function (isConfirm) {
         if (isConfirm)//isConfirm==true ise yani doğrulanmış ise (evet denmişse)   
         {
-            var id = parseFloat($('#btnDelete').val());
-            console.log(id);
             SilmeIslemi(id);
         }
         else {
             toastr.warning("Silme işlemi İptal Edildi!");
         }
     });
-});
+}
+
 function SilmeIslemi(id) {
     $.ajax({
         method: 'POST',
         //data: { pMasraf: parseFloat($('#txtMasraflar').val()), pGelir: parseFloat($('#txtGelirler').val()) },
         data: { pId: id },
-        url: '/Haberler/HaberSil',
+        url: '/Duyuru/DuyuruSil',
         beforeSend: function () {
 
         }
     }).done(function (veri) {
         console.log(veri);
         if (veri.basarili) {
-            HesaplamaBasarili(veri);
+            SilmeBasarili(veri);
         }
         else {
-            HesaplamaBasarisiz(veri.mesaj);
+            SilmeBasarisiz(veri.mesaj);
         }
 
     }).fail(function () {
@@ -46,7 +43,7 @@ function SilmeIslemi(id) {
 
     });
 }
-function HesaplamaBasarili(veri) {
+function SilmeBasarili(veri) {
     //alert("İşlem Başarıyla Tamamlandı");
     swal({
         title: "Uyarı",
@@ -61,7 +58,7 @@ function HesaplamaBasarili(veri) {
     });
 
 }
-function HesaplamaBasarisiz(mesaj) {
+function SilmeBasarisiz(mesaj) {
     swal({
         title: "Silme İşlemi",
         text: mesaj,
@@ -69,4 +66,3 @@ function HesaplamaBasarisiz(mesaj) {
     });
     toastr.warning("İşlem Başarısız!");
 }
-});

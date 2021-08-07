@@ -51,12 +51,12 @@ namespace Simav.Controllers
             {
                 return NotFound();
             }
-            var haber = _service.GetById(id.Value);
-            if (haber == null)
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
             {
                 return NotFound();//Bulunamadı
             }
-            return View(haber);
+            return View(entity);
         }
         [AutFilter]
         [HttpGet]
@@ -102,8 +102,6 @@ namespace Simav.Controllers
             {
                 return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
             }
-           
-           RedirectToAction("Haberler", "Index");
            return Json(new { basarili = true, id = pId , mesaj = "İşlem Başarılı" }); 
         }
     }
