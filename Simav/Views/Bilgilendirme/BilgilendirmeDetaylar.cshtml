@@ -1,0 +1,49 @@
+﻿@model Simav.Models.Bilgilendirme
+
+@{
+    ViewData["Title"] = "BilgilendirmeDetaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textAreaRO.js"></script>
+<h1>Bilgilendirme Detaylar</h1>
+<div>
+    <h4>Bilgilendirme</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KisaAciklama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KisaAciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+        <dd class = "col-sm-10">
+           <textarea id="local-upload"> @Html.DisplayFor(model => model.Icerik)</textarea>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Onay)
+        </dt>
+        <dd class = "col-sm-10">
+            <input type="checkbox" checked=@Convert.ToBoolean(Model.Onay) />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="BilgilendirmeGuncelle" asp-route-id="@Model.BilgilendirmeId">Edit</a>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+</div>

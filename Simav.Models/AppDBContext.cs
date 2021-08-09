@@ -126,7 +126,7 @@ namespace Simav.Models
 
             modelBuilder.Entity<Ilanlar>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IlanlarId);
 
                 entity.ToTable("Ilanlar");
 

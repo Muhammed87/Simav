@@ -1,34 +1,31 @@
-﻿@model IEnumerable<Simav.Models.Haberler>
+﻿@model IEnumerable<Simav.Models.Etkinler>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <script src="~/lib/jquery/dist/jquery.min.js"> </script>
-<script src="~/js/btnHaberSilJS.js"> </script>
+<script src="~/js/btnEtkinlikSilJS.js"></script>
 <script src="~/js/toastr.js"> </script>
 <script src="~/js/sweetalert.min.js"> </script>
 <link href="~/css/sweetalert.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
-<h1>Index</h1>
+<h1>@ViewBag.Baslik</h1>
 
 <p>
-    <a asp-action="YeniHaber">Yeni Haber</a>
+    <a asp-action="YeniEtkinlik" class="btn btn-primary">Yeni Etkinlik Ekle</a>
 </p>
-<table class="table table-responsive">
+<table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Ad)
+                @Html.DisplayNameFor(model => model.EtkinlikAdi)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KisaAciklama)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Resim)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tarih)
             </th>
             <th></th>
         </tr>
@@ -37,7 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ad)
+                @Html.DisplayFor(modelItem => item.EtkinlikAdi)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.KisaAciklama)
@@ -46,12 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Resim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tarih)
-            </td>
-            <td>
-                <a asp-action="HaberGuncelle" asp-route-id="@item.HaberlerId" class="btn btn-primary">Edit</a>
-                <a asp-action="HaberDetaylar" asp-route-id="@item.HaberlerId" class="btn btn-info">Details</a>
-                <button type="button" value="@item.HaberlerId" onclick="btnHaberSil(this.value)" class="btn btn-danger" >Delete</button> 
+                <a class="btn btn-primary" asp-action="EtkinlikGuncelle" asp-route-id="@item.EtkinlikId">Güncelle</a>
+                <a class="btn btn-info" asp-action="EtkinlikDetaylar" asp-route-id="@item.EtkinlikId">Details</a>
+                <button type="button" value="@item.EtkinlikId" onclick="btnEtkinlikSil(this.value)" class="btn btn-danger" >Sil</button> 
             </td>
         </tr>
 }

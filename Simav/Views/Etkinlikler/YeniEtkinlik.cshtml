@@ -1,0 +1,47 @@
+﻿@model Simav.Models.Etkinler
+
+@{
+    ViewData["Title"] = "YeniEtkinlik";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<h1>YeniEtkinlik</h1>
+
+<h4>Etkinler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="YeniEtkinlik">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EtkinlikAdi" class="control-label"></label>
+                <input asp-for="EtkinlikAdi" class="form-control" />
+                <span asp-validation-for="EtkinlikAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KisaAciklama" class="control-label"></label>
+                <input asp-for="KisaAciklama" class="form-control" />
+                <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <textarea id="local-upload" asp-for="Icerik" class="form-control" ></textarea>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim" class="control-label"></label>
+                <input asp-for="Resim" class="form-control" />
+                <span asp-validation-for="Resim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

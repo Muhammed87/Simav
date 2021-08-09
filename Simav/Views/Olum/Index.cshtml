@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Simav.Models.Olumler>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnIlanSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<h1>@ViewBag.Baslik</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="YeniOlum">Yeni Taziye Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KisaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cami)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mezarlik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KisaAciklama)
+            </td>
+            <td>
+                <textarea id="local-upload">@Html.DisplayFor(modelItem => item.Icerik)</textarea>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Onay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cami)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mezarlik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saat)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="OlumGuncelle" asp-route-id="@item.OlumId">Güncelle</a>
+                <a class="btn btn-info" asp-action="OlumDetaylar" asp-route-id="@item.OlumId">Detaylar</a>
+                <button type="button" value="@item.OlumId" onclick="btnIlanSil(this.value)" class="btn btn-danger" >Sil</button> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

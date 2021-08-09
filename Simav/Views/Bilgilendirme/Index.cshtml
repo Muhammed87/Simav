@@ -1,21 +1,21 @@
-﻿@model IEnumerable<Simav.Models.Haberler>
+﻿@model IEnumerable<Simav.Models.Bilgilendirme>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <script src="~/lib/jquery/dist/jquery.min.js"> </script>
-<script src="~/js/btnHaberSilJS.js"> </script>
+<script src="~/js/btnBilgilendimeSilJS.js"> </script>
 <script src="~/js/toastr.js"> </script>
 <script src="~/js/sweetalert.min.js"> </script>
 <link href="~/css/sweetalert.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
 <h1>Index</h1>
-
 <p>
-    <a asp-action="YeniHaber">Yeni Haber</a>
+    <a class="btn btn-primary" asp-action="YeniBilgilendirme">Yeni Bilgilendirme Ekle</a>
 </p>
-<table class="table table-responsive">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.KisaAciklama)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Resim)
+                @Html.DisplayNameFor(model => model.Icerik)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tarih)
@@ -43,15 +43,15 @@
                 @Html.DisplayFor(modelItem => item.KisaAciklama)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Resim)
+                @Html.DisplayFor(modelItem => item.Icerik)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tarih)
             </td>
             <td>
-                <a asp-action="HaberGuncelle" asp-route-id="@item.HaberlerId" class="btn btn-primary">Edit</a>
-                <a asp-action="HaberDetaylar" asp-route-id="@item.HaberlerId" class="btn btn-info">Details</a>
-                <button type="button" value="@item.HaberlerId" onclick="btnHaberSil(this.value)" class="btn btn-danger" >Delete</button> 
+                <a class="btn btn-primary" asp-action="BilgilendirmeGuncelle" asp-route-id="@item.BilgilendirmeId">Edit</a>
+                <a class="btn btn-info" asp-action="BilgilendirmeDetaylar" asp-route-id="@item.BilgilendirmeId">Details</a>
+                <button type="button" id="btnDelete" value="@item.BilgilendirmeId" onclick="reply_click(this.value)" class="btn btn-danger" >Delete</button>
             </td>
         </tr>
 }

@@ -1,0 +1,44 @@
+﻿@model Simav.Models.Etkinler
+
+@{
+    ViewData["Title"] = "EtkinlikDetaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textAreaRo.js"></script>
+<h1>EtkinlikDetaylar</h1>
+
+<div>
+    <h4>Etkinler</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EtkinlikAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EtkinlikAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KisaAciklama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KisaAciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+        <dd class = "col-sm-10">
+          <textarea id="local-upload">@Html.DisplayFor(model => model.Icerik)</textarea> 
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Resim)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Resim)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-priamry" asp-action="EtkinlikGuncelle" asp-route-id="@Model.EtkinlikId">Güncelle</a>
+    <a class="btn btn-info"asp-action="Index">Etkinlik Listesine Geri Dön</a>
+</div>

@@ -1,7 +1,7 @@
-﻿@model Simav.Models.Duyuru
+﻿@model Simav.Models.Bilgilendirme
 
 @{
-    ViewData["Title"] = "DuyuruGuncelle";
+    ViewData["Title"] = "YeniBilgilendirme";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -11,22 +11,12 @@
 <script src="~/js/HaberlerCheckBoxJS.js"></script> 
 <h1>@ViewBag.Baslik</h1>
 
-<h4>Duyuru</h4>
+<h4>Bilgilendirme</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="DuyuruGuncelle">
+        <form asp-action="YeniBilgilendirme">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="DuyuruId" />
-            <div class="form-group">
-                <input asp-for="Durum" class="form-control" type="hidden"/>
-            </div>
-            <div class="form-group">
-                <input asp-for="KayıtTarihi" class="form-control" type="hidden"/>
-            </div>
-            <div class="form-group">
-                <input asp-for="KaydedenKulId" class="form-control" type="hidden"/>
-            </div>
             <div class="form-group">
                 <label asp-for="Ad" class="control-label"></label>
                 <input asp-for="Ad" class="form-control" />
@@ -42,18 +32,19 @@
                 <textarea id="local-upload" asp-for="Icerik" class="form-control" ></textarea>
                 <span asp-validation-for="Icerik" class="text-danger"></span>
             </div>
+            
+            <div class="form-group">
+                <input asp-for="Onay" id="hdOnayla" type="hidden" value="1" class="form-check-input">
+                <input id="cbOnayla" checked="checked" type="checkbox" />
+                <label asp-for="Onay" class="checkLabel">Onayla</label>
+            </div>
             <div class="form-group">
                 <label asp-for="Tarih" class="control-label"></label>
                 <input asp-for="Tarih" class="form-control" />
                 <span asp-validation-for="Tarih" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Onay" id="hdOnayla" type="hidden" value="@Model.Onay" class="form-check-input">
-                <input id="cbOnayla" checked="@Convert.ToBoolean(Model.Onay)" type="checkbox" />
-                <label asp-for="Onay" class="checkLabel">Onayla</label>
-            </div>  
-            <div class="form-group">
-                <input type="submit" value="Güncelle" class="btn btn-primary" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
