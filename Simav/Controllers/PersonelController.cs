@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Simav.Controllers
 {
-    public class BilgilendirmeController : Controller
+    public class PersonelController : Controller
     {
-        private readonly IService<Bilgilendirme> _service;
-        public BilgilendirmeController(IService<Bilgilendirme> service)
+        private readonly IService<Personel> _service;
+        public PersonelController(IService<Personel> service)
         {
             _service = service;
         }
@@ -26,14 +26,14 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult YeniBilgilendirme()
+        public IActionResult YeniPersonel()
         {
-            ViewBag.Baslik = "Yeni Bilgilendirme";
+            ViewBag.Baslik = "Yeni Personel";
             return View();
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult YeniBilgilendirme(Bilgilendirme entity)
+        public IActionResult YeniBilgilendirme(Personel entity)
         {
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
@@ -41,13 +41,13 @@ namespace Simav.Controllers
             entity.KayıtTarihi = DateTime.Now;
             entity.Durum = (byte)Enums.KayitDurumu.Aktif;
             _service.Save(entity);
-            return RedirectToAction("Index", "Bilgilendirme");
+            return RedirectToAction("Index", "Personel");
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult BilgilendirmeGuncelle(int? id)
+        public IActionResult PersonelGuncelle(int? id)
         {
-            ViewBag.Baslik = "Haber Düzenle";
+            ViewBag.Baslik = "Personel Düzenle";
             if (id == null)
             {
                 return NotFound();
@@ -61,9 +61,9 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult BilgilendirmeGuncelle(Bilgilendirme entity)
+        public IActionResult PersonelGuncelle(Personel entity)
         {
-            ViewBag.Baslik = "Bilgilendirme Güncelle";
+            ViewBag.Baslik = "Personel Güncelle";
             if (ModelState.IsValid)
             {
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
@@ -75,9 +75,9 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult BilgilendirmeDetaylar(int? id)
+        public IActionResult PersonelDetaylar(int? id)
         {
-            ViewBag.Baslik = "Bilgilendirme Detayları";
+            ViewBag.Baslik = "Personel Detayları";
             if (id == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace Simav.Controllers
             }
             return View(entity);
         }
-        public JsonResult BilgilendirmeSil(int pId)
+        public JsonResult PersonelSil(int pId)
         {
             try
             {

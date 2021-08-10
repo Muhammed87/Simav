@@ -64,6 +64,7 @@ namespace Simav.Controllers
         [HttpPost]
         public IActionResult OlumGuncelle(Olumler entity)
         {
+            ViewBag.Baslik = "Taziye Güncelle";
             if (ModelState.IsValid)
             {
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;

@@ -1,15 +1,15 @@
-﻿function btnEtkinlikSil(clicked_id) {
+﻿function btnTaziyeSil(clicked_id) {
     id = clicked_id;
     swal({
         title: "Onaylama",
-        text: "Etkinlik Silinecektir",
+        text: "Haber Silinecektir",
         type: "warning",
-        showCancelButton: true, 
-        confirmButtonText: "Evet", 
-        cancelButtonText: "Hayır", 
-        showLoaderOnConfirm: true 
+        showCancelButton: true, //iptal butonunu göster
+        confirmButtonText: "Evet", //Onay vereceğimiz butonun üzerinde ne görünsün =>(basılırsa true)
+        cancelButtonText: "Hayır", //İptal butonu üzerinde ne grünsün(ne yazsın) =>(basılırsa false)
+        showLoaderOnConfirm: true //Yükleniyor ifadesi görünsün mü?
     }, function (isConfirm) {
-        if (isConfirm) 
+        if (isConfirm)//isConfirm==true ise yani doğrulanmış ise (evet denmişse)   
         {
             SilmeIslemi(id);
         }
@@ -22,8 +22,9 @@
 function SilmeIslemi(id) {
     $.ajax({
         method: 'POST',
+        //data: { pMasraf: parseFloat($('#txtMasraflar').val()), pGelir: parseFloat($('#txtGelirler').val()) },
         data: { pId: id },
-        url: '/Etkinlikler/EtkinlikSil',
+        url: '/Olum/OlumSil',
         beforeSend: function () {
 
         }
@@ -43,13 +44,14 @@ function SilmeIslemi(id) {
     });
 }
 function SilmeBasarili(veri) {
+    //alert("İşlem Başarıyla Tamamlandı");
     swal({
         title: "Uyarı",
         text: "Silme işlemi Başarıyla Gerçekleşti!",
         type: "warning",
-        showCancelButton: false, 
-        confirmButtonText: "Onayla", 
-        showLoaderOnConfirm: true 
+        showCancelButton: false, //iptal butonunu göster
+        confirmButtonText: "Onayla", //Onay vereceğimiz butonun üzerinde ne görünsün =>(basılırsa true)
+        showLoaderOnConfirm: true //Yükleniyor ifadesi görünsün mü?
     }, function (isConfirm) {
         location.reload();
         

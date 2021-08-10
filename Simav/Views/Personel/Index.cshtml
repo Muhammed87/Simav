@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Simav.Models.Olumler>
+﻿@model IEnumerable<Simav.Models.Personel>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,9 +11,10 @@
 <link href="~/css/sweetalert.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
 <h1>@ViewBag.Baslik</h1>
+<h1>Index</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="YeniOlum">Yeni Taziye Ekle</a>
+    <a class="btn btn-primary" asp-action="YeniPersonel">Yeni Personel Ekle</a>
 </p>
 <table class="table">
     <thead>
@@ -22,22 +23,22 @@
                 @Html.DisplayNameFor(model => model.AdSoyad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KisaAciklama)
+                @Html.DisplayNameFor(model => model.Unvan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tarih)
+                @Html.DisplayNameFor(model => model.Tel)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Onay)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cami)
+                @Html.DisplayNameFor(model => model.Cv)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Mezarlik)
+                @Html.DisplayNameFor(model => model.Fb)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Saat)
+                @Html.DisplayNameFor(model => model.Tw)
             </th>
             <th></th>
         </tr>
@@ -49,26 +50,26 @@
                 @Html.DisplayFor(modelItem => item.AdSoyad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KisaAciklama)
+                @Html.DisplayFor(modelItem => item.Unvan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tarih)
+                @Html.DisplayFor(modelItem => item.Tel)
             </td>
             <td>
-                <input id="cbOnayla" checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cami)
+                @Html.DisplayFor(modelItem => item.Cv)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mezarlik)
+                @Html.DisplayFor(modelItem => item.Fb)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Saat)
+                @Html.DisplayFor(modelItem => item.Tw)
             </td>
             <td>
-                <a class="btn btn-primary" asp-action="OlumGuncelle" asp-route-id="@item.OlumId">Güncelle</a>
-                <a class="btn btn-info" asp-action="OlumDetaylar" asp-route-id="@item.OlumId">Detaylar</a>
+                <a class="btn btn-primary" asp-action="PersonelGuncelle" asp-route-id="@item.PersonelId">Güncelle</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PersonelId">Details</a>
                 <button type="button" value="@item.OlumId" onclick="btnTaziyeSil(this.value)" class="btn btn-danger" >Sil</button> 
             </td>
         </tr>

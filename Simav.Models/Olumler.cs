@@ -17,7 +17,7 @@ namespace Simav.Models
         public string KisaAciklama { get; set; }
         public string Icerik { get; set; }
         public DateTime? Tarih { get; set; }
-        public string Onay { get; set; }
+        public byte Onay { get; set; }
         public string Cami { get; set; }
         public string Mezarlik { get; set; }
         public TimeSpan? Saat { get; set; }

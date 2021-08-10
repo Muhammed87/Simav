@@ -1,0 +1,68 @@
+﻿@model Simav.Models.Olumler
+
+@{
+    ViewData["Title"] = "OlumDetaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textAreaRO.js"></script>
+<h1>@ViewBag.Baslik</h1>
+
+<div>
+    <h4>Olumler</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KisaAciklama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KisaAciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            <textarea id="local-upload">@Html.DisplayFor(model => model.Icerik)</textarea>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Onay)
+        </dt>
+        <dd class = "col-sm-10">
+            <input id="cbOnayla" checked="@Convert.ToBoolean(Model.Onay)" type="checkbox" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cami)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cami)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mezarlik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mezarlik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Saat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Saat)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="OlumGuncelle" asp-route-id="@Model.OlumId">Güncelle</a>
+    <a class="btn btn-info" asp-action="Index">Listeye Geri Dön</a>
+</div>
