@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Simav.Models.MeclisGundem>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnGundemSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<h1>@ViewBag.Baslik</h1>
+
+<p>
+    <a asp-action="YeniGundem">Yeni Gündem Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GundemAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GundemTuru)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DosyaYolu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KisaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yayinla)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GundemAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GundemTuru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DosyaYolu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KisaAciklama)
+            </td>
+            <td>
+                <input id="cbOnayla" checked="@Convert.ToBoolean(item.Yayinla)" type="checkbox" />
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="GundemDetaylar" asp-route-id="@item.GundemId">Gündelle</a>
+                <a class="btn btn-info" asp-action="GundemGuncelle" asp-route-id="@item.GundemId">Detaylar</a>
+                <button type="button" value="@item.GundemId" onclick="btnGundemSil(this.value)" class="btn btn-danger" >Sil</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

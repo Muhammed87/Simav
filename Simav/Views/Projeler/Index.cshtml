@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Simav.Models.Projeler>
+﻿@using Simav.Common
+@model IEnumerable<Simav.Models.Projeler>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,10 +23,16 @@
                 @Html.DisplayNameFor(model => model.Ad)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ProjeTuru)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.KısaAciklama)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sira)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjeDurumu)
             </th>
             <th></th>
         </tr>
@@ -36,15 +43,48 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Ad)
             </td>
+            @if (item.ProjeTuru == (byte)Enums.ProjeTuru.Istihdam)
+        {
             <td>
-                @Html.DisplayFor(modelItem => item.KısaAciklama)
+                İstihdam
             </td>
+        }
+        @if (item.ProjeTuru == (byte)Enums.ProjeTuru.Turizm)
+        {
             <td>
-                @Html.DisplayFor(modelItem => item.Sira)
+                Turizm
             </td>
+        }
+        @if (item.ProjeTuru == (byte)Enums.ProjeTuru.Sehircilik)
+        {
             <td>
-                <a class="btn btn-primary" asp-action="ProjelerGuncelle" asp-route-id="@item.ProjeId">Edit</a>
-                <a class="btn btn-info" asp-action="ProjelerDetaylar" asp-route-id="@item.ProjeId">Details</a>
+                Şehircilik
+            </td>
+        }
+        @if (item.ProjeTuru == (byte)Enums.ProjeTuru.Egitim)
+        {
+            <td>
+                Eğitim
+            </td>
+        }
+        @if (item.ProjeTuru == (byte)Enums.ProjeTuru.Sosyal)
+        {
+            <td>
+                Sosyal
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.KısaAciklama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjeDurumu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sira)
+        </td>
+            <td>
+                <a class="btn btn-primary" asp-action="ProjelerGuncelle" asp-route-id="@item.ProjeId">Güncelle</a>
+                <a class="btn btn-info" asp-action="ProjelerDetaylar" asp-route-id="@item.ProjeId">Detaylar</a>
                 <button type="button" value="@item.ProjeId" onclick="btnProjeSil(this.value)" class="btn btn-danger" >Sil</button>
             </td>
         </tr>

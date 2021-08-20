@@ -13,23 +13,23 @@ using System.Threading.Tasks;
 
 namespace Simav.Controllers
 {
-      public class HaberlerController : Controller
-      {
+    public class MeclisGundemController : Controller
+    {
         private readonly IWebHostEnvironment _hostEnvironment;
-        private readonly IService<Haberler> _service;
-        public HaberlerController(IService<Haberler> service,IWebHostEnvironment hostEnvironment)
+        private readonly IService<MeclisGundem> _service;
+        public MeclisGundemController(IService<MeclisGundem> service, IWebHostEnvironment hostEnvironment)
         {
             _hostEnvironment = hostEnvironment;
             _service = service;
         }
-        
-        public IActionResult HaberListesi()
+
+        public IActionResult GundemListesi()
         {
-            ViewBag.Baslik = "Haber Listesi";
-            var haberListesi = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis));
+            ViewBag.Baslik = "Gündem Listesi";
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
             return View(haberListesi);
         }
-        public IActionResult HaberDetayi(int? id)
+        public IActionResult GundemDetayi(int? id)
         {
             if (id == null)
             {
@@ -45,52 +45,54 @@ namespace Simav.Controllers
         [AutFilter]
         public IActionResult Index()
         {
-            ViewBag.Baslik = "Haber Listesi";
-            var haberListesi = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
+            ViewBag.Baslik = "Gündem Listesi";
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
             return View(haberListesi);
         }
         [HttpGet]
         [AutFilter]
-        public IActionResult YeniHaber()
+        public IActionResult YeniGundem()
         {
-            ViewBag.Baslik = "Yeni Haber";
+            ViewBag.Baslik = "Yeni Gundem";
             return View();
         }
         [AutFilter]
         [HttpPost]
-        public async Task<IActionResult> YeniHaber(Haberler entity, IFormFile uploaded_File)
+        public async Task<IActionResult> YeniGundem(MeclisGundem entity, IFormFile uploaded_File)
         {
+            var fileName = Path.GetFileName(uploaded_File.FileName);
+            var extension = Path.GetExtension(fileName);
             if (uploaded_File == null || uploaded_File.Length == 0)
             {
-                ModelState.AddModelError("", "Resim Seçilmedi!");
+                ModelState.AddModelError("", "Dosya Seçilmedi!");
                 return View();
             }
-            if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+            if (!string.Equals(".pdf", extension))
 
             {
-                ModelState.AddModelError("", "Resim Seçilmedi!");
+                ModelState.AddModelError("", "Dosya Türü Yanlış Seçildi!");
                 return View();
             }
-            string sImage_Folder =  "Haber_Image";
-            string sTarget_Filename = "Haber_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+            string sImage_Folder = "MeclisGundem_Dosyalari";
+            string sTarget_Filename = entity.GundemAdi + "_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".pdf";
             string sPath_WebRoot = _hostEnvironment.WebRootPath;
-            string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+            string sPath_of_Target_Folder = sPath_WebRoot + "\\pdf\\" + sImage_Folder + "\\";
             string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
             using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
             {
                 await uploaded_File.CopyToAsync(stream);
             }
-            entity.Resim= sTarget_Filename;
+            entity.DosyaYolu = sTarget_Filename;
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
             entity.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.KayıtTarihi = DateTime.Now;
             _service.Save(entity);
-            return RedirectToAction("Index", "Haberler");
+            return RedirectToAction("Index", "MeclisGundem");
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult HaberDetaylar(int? id)
+        public IActionResult GundemDetaylar(int? id)
         {
             if (id == null)
             {
@@ -105,9 +107,9 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult HaberGuncelle(int? id)
+        public IActionResult GundemGuncelle(int? id)
         {
-            ViewBag.Baslik = "Haber Düzenle";
+            ViewBag.Baslik = "Gundem Düzenle";
             if (id == null)
             {
                 return NotFound();
@@ -120,32 +122,33 @@ namespace Simav.Controllers
             return View(entity);
         }
         [HttpPost]
-        public async Task<IActionResult> HaberGuncelleAsync(Haberler entity, IFormFile uploaded_File)
+        public async Task<IActionResult> GundemGuncelleAsync(MeclisGundem entity, IFormFile uploaded_File)
         {
             if (ModelState.IsValid)
             {
+                var fileName = Path.GetFileName(uploaded_File.FileName);
+                var extension = Path.GetExtension(fileName);
                 if (uploaded_File == null || uploaded_File.Length == 0)
                 {
-                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    ModelState.AddModelError("", "Dosya Seçilmedi!");
                     return View();
                 }
-                if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+                if (!string.Equals(".pdf", extension))
 
                 {
-                    ModelState.AddModelError("", "Resim Türü Yanlış Seçildi!");
+                    ModelState.AddModelError("", "Dosya Türü Yanlış Seçildi!");
                     return View();
                 }
-                string sImage_Folder = "Haber_Image";
-                string sTarget_Filename = "Haber_Image_" + DateTime.Now.ToString().Replace(" ",string.Empty).Replace(":",string.Empty) + ".jpg";
+                string sImage_Folder = "MeclisGundem_Dosyalari";
+                string sTarget_Filename = entity.GundemAdi + "_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".pdf";
                 string sPath_WebRoot = _hostEnvironment.WebRootPath;
-                string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+                string sPath_of_Target_Folder = sPath_WebRoot + "\\pdf\\" + sImage_Folder + "\\";
                 string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
-
                 using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
                 {
                     await uploaded_File.CopyToAsync(stream);
                 }
-                entity.Resim = sTarget_Filename;
+                entity.DosyaYolu = sTarget_Filename;
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
                 entity.DegistirmeTarihi = DateTime.Now;
                 _service.Update(entity);
@@ -153,14 +156,14 @@ namespace Simav.Controllers
             }
             return View(entity);
         }
-        public JsonResult HaberSil(int pId)
+        public JsonResult GundemSil(int pId)
         {
             try
             {
-                var haber=_service.GetById(pId);
+                var haber = _service.GetById(pId);
                 if (haber == null)
                 {
-                    return Json(new { basarili = false, id=pId ,mesaj = "İşlem Başarısız" });
+                    return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
                 }
                 haber.Durum = (byte)Enums.KayitDurumu.Silinmiş;
                 _service.Update(haber);
@@ -169,7 +172,7 @@ namespace Simav.Controllers
             {
                 return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
             }
-           return Json(new { basarili = true, id = pId , mesaj = "İşlem Başarılı" }); 
+            return Json(new { basarili = true, id = pId, mesaj = "İşlem Başarılı" });
         }
     }
 }

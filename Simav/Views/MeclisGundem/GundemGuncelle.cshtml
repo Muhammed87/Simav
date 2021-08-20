@@ -1,0 +1,67 @@
+﻿@model Simav.Models.MeclisGundem
+
+@{
+    ViewData["Title"] = "GundemGuncelle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="~/js/HaberlerCheckBoxJS.js"></script> 
+
+<h1>@ViewBag.Baslik</h1>
+
+<h4>MeclisGundem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GundemGuncelle" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GundemId" />
+            <div class="form-group">
+                <input asp-for="Durum" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KayıtTarihi" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KaydedenKulId" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="GundemAdi" class="control-label"></label>
+                <input asp-for="GundemAdi" class="form-control" />
+                <span asp-validation-for="GundemAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="GundemTuru" for="validationServer04" class="form-label">Unvan</label>
+            <select asp-for="GundemTuru" class="form-select is-invalid" id="validationServer04" onchange="Unvan()" required>
+              <option selected disabled value="">Gündem Türü</option>
+              <option value="1">Gündem Kararları</option>
+              <option value="2">Gündem Maddeleri</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="formFile" asp-for="DosyaYolu" class="form-label">Dosyaları Seç</label>
+                <input name="uploaded_File" asp-for="DosyaYolu" class="form-control" type="file" id="formFile">
+            </div>
+            <div class="form-group">
+                <label asp-for="KisaAciklama" class="control-label"></label>
+                <input asp-for="KisaAciklama" class="form-control" />
+                <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Yayinla" id="hdOnayla" type="hidden" value="1" class="form-check-input">
+                <input id="cbOnayla" checked="checked" type="checkbox" />
+                <label asp-for="Yayinla" class="checkLabel">Yayinla</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-info" asp-action="Index">Listeye Geri Dön</a>
+</div>
+

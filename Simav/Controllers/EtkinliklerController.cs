@@ -1,10 +1,13 @@
 ﻿using App.Common.Filters;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Simav.Common;
 using Simav.Core;
 using Simav.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +15,11 @@ namespace Simav.Controllers
 {
     public class EtkinliklerController : Controller
     {
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IService<Etkinler> _service;
-        public EtkinliklerController(IService<Etkinler> service)
+        public EtkinliklerController(IService<Etkinler> service, IWebHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             _service = service;
         }
         [AutFilter]
@@ -33,8 +38,29 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult YeniEtkinlik(Etkinler entity)
+        public async Task<IActionResult> YeniEtkinlikAsync(Etkinler entity, IFormFile uploaded_File)
         {
+            if (uploaded_File == null || uploaded_File.Length == 0)
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            string sImage_Folder = "Etkinlik_Image";
+            string sTarget_Filename = "Etkinlik_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+            string sPath_WebRoot = _hostEnvironment.WebRootPath;
+            string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+            string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+            using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+            {
+                await uploaded_File.CopyToAsync(stream);
+            }
+            entity.Resim = sTarget_Filename;
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
             entity.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
@@ -61,10 +87,31 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult EtkinlikGuncelle(Etkinler entity)
+        public async Task<IActionResult> EtkinlikGuncelleAsync(Etkinler entity, IFormFile uploaded_File)
         {
             if (ModelState.IsValid)
             {
+                if (uploaded_File == null || uploaded_File.Length == 0)
+                {
+                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    return View();
+                }
+                if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+                {
+                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    return View();
+                }
+                string sImage_Folder = "Etkinlik_Image";
+                string sTarget_Filename = "Etkinlik_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+                string sPath_WebRoot = _hostEnvironment.WebRootPath;
+                string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+                string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+                using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+                {
+                    await uploaded_File.CopyToAsync(stream);
+                }
+                entity.Resim = sTarget_Filename;
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
                 entity.DegistirmeTarihi = DateTime.Now;
                 _service.Update(entity);

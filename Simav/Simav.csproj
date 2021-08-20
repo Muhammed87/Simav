@@ -54,6 +54,9 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="wwwroot\images\Etkinlik_Image\" />
+    <Folder Include="wwwroot\images\Video_Image\" />
+    <Folder Include="wwwroot\pdf\MeclisGundem_Dosyalari\" />
   </ItemGroup>
 
 </Project>

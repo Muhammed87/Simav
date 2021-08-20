@@ -22,10 +22,34 @@ namespace Simav.Common
         {
             BelediyeBaskani = 1,
             BelediyeBaskaniYardimcisi = 2,
-            MeclisUyesi=3,
-            Muhtar=4,
-            Mudur=5,
-            MudurYardimcisi=6
+            MeclisUyesi = 3,
+            Muhtar = 4,
+            Mudur = 5,
+            MudurYardimcisi = 6
+        }
+        public enum SayfaTipi
+        {
+            Kurum = 1,
+            Ilcemiz = 2,
+            Iletisim = 3
+        }
+        public enum GundemTuru
+        {
+            GundemKararlari = 1,
+            GundemMaddeleri = 2
+        }
+        public enum ProjeTuru
+        {
+            Istihdam = 1,
+            Turizm = 2,
+            Sehircilik=3,
+            Egitim=4,
+            Sosyal=5
+        }
+        public enum ProjeDurumu
+        {
+            Tamamlandi=1,
+            tamamlanmadi=2
         }
     }
 }

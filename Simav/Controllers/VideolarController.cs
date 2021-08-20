@@ -1,10 +1,13 @@
 ﻿using App.Common.Filters;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Simav.Common;
 using Simav.Core;
 using Simav.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +15,12 @@ namespace Simav.Controllers
 {
     public class VideolarController : Controller
     {
+
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IService<Videolar> _service;
-        public VideolarController(IService<Videolar> service)
+        public VideolarController(IService<Videolar> service, IWebHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             _service = service;
         }
         [AutFilter]
@@ -33,8 +39,29 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult YeniVideolar(Videolar entity)
+        public async Task<IActionResult> YeniVideolarAsync(Videolar entity, IFormFile uploaded_File)
         {
+            if (uploaded_File == null || uploaded_File.Length == 0)
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            string sImage_Folder = "Video_Image";
+            string sTarget_Filename = "Video_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+            string sPath_WebRoot = _hostEnvironment.WebRootPath;
+            string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+            string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+            using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+            {
+                await uploaded_File.CopyToAsync(stream);
+            }
+            entity.Resim = sTarget_Filename;
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
             entity.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
@@ -61,11 +88,33 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult VideolarGuncelle(Videolar entity)
+        public async Task<IActionResult> VideolarGuncelleAsync(Videolar entity, IFormFile uploaded_File)
         {
+
             ViewBag.Baslik = "Video Güncelle";
             if (ModelState.IsValid)
             {
+                if (uploaded_File == null || uploaded_File.Length == 0)
+                {
+                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    return View();
+                }
+                if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+                {
+                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    return View();
+                }
+                string sImage_Folder = "Video_Image";
+                string sTarget_Filename = "Video_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+                string sPath_WebRoot = _hostEnvironment.WebRootPath;
+                string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+                string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+                using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+                {
+                    await uploaded_File.CopyToAsync(stream);
+                }
+                entity.Resim = sTarget_Filename;
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
                 entity.DegistirmeTarihi = DateTime.Now;
                 _service.Update(entity);

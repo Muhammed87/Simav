@@ -12,7 +12,7 @@
 <h4>Projeler</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="ProjelerGuncelle">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProjeId" />
@@ -31,6 +31,17 @@
                 <span asp-validation-for="Ad" class="text-danger"></span>
             </div>
             <div class="form-group">
+            <label asp-for="ProjeTuru" for="validationServer04" class="form-label">Unvan</label>
+            <select asp-for="ProjeTuru" class="form-select is-invalid" id="validationServer04" required>
+              <option selected disabled value="@Model.ProjeTuru">Unvan</option>
+              <option value="1">İstihdam</option>
+              <option value="2">Turizm</option>
+              <option value="3">Şehircilik</option>
+              <option value="4">Eğitim</option>
+              <option value="5">Sosyal</option>
+            </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="KısaAciklama" class="control-label"></label>
                 <input asp-for="KısaAciklama" class="form-control" />
                 <span asp-validation-for="KısaAciklama" class="text-danger"></span>
@@ -44,6 +55,11 @@
                 <label asp-for="Sira" class="control-label"></label>
                 <input asp-for="Sira" class="form-control" />
                 <span asp-validation-for="Sira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="ProjeDurumu" id="hdOnayla" type="hidden" value="@Model.ProjeDurumu" class="form-check-input">
+                <input id="cbOnayla" checked="@Convert.ToBoolean(Model.ProjeDurumu)" type="checkbox" />
+                <label asp-for="ProjeDurumu" class="checkLabel">Proje Durumu</label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

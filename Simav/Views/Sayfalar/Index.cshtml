@@ -4,8 +4,13 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h1>Index</h1>
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnSayfaSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<h1>@ViewBag.Baslik</h1>
 
 <p>
     <a class="btn btn-primary" asp-action="YeniSayfa">Yeni Sayfa Ekle</a>
@@ -15,9 +20,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.SayfaAdi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SayfaTipi)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KisaAciklama)
@@ -35,18 +37,15 @@
                 @Html.DisplayFor(modelItem => item.SayfaAdi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SayfaTipi)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.KisaAciklama)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Yayınla)
+               <input checked="@Convert.ToBoolean(item.Yayınla)" type="checkbox" />
             </td>
             <td>
                 <a class="btn btn-primary" asp-action="SayfaGuncelle" asp-route-id="@item.SayfaId">Güncelle</a>
                 <a class="btn btn-info" asp-action="SayfaDetaylar" asp-route-id="@item.SayfaId">Detaylar</a>
-                <button type="button" value="@item.SayfaId" onclick="btnProjeSil(this.value)" class="btn btn-danger" >Sil</button>
+                <button type="button" value="@item.SayfaId" onclick="btnSayfaSil(this.value)" class="btn btn-danger" >Sil</button>
             </td>
         </tr>
 }

@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Simav.Models.Ihaleler>
+﻿@model IEnumerable<Simav.Models.Ilanlar>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <script src="~/lib/jquery/dist/jquery.min.js"> </script>
-<script src="~/js/btnIhaleSilJS.js"> </script>
+<script src="~/js/btnIlanSilJS.js"> </script>
 <script src="~/js/toastr.js"> </script>
 <script src="~/js/sweetalert.min.js"> </script>
 <link href="~/css/sweetalert.css" rel="stylesheet" />
@@ -13,16 +14,16 @@
 <h1>@ViewBag.Baslik</h1>
 
 <p>
-    <a asp-action="YeniIhale">Yeni İhale Ekle</a>
+    <a class="btn btn-primary" asp-action="YeniIlan">Yeni Ilan Ekle</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IhaleAdi)
+                @Html.DisplayNameFor(model => model.Ad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KisaAciklama)
+                @Html.DisplayNameFor(model => model.KısaAciklama)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tarih)
@@ -37,23 +38,23 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IhaleAdi)
+                @Html.DisplayFor(modelItem => item.Ad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KisaAciklama)
+                @Html.DisplayFor(modelItem => item.KısaAciklama)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tarih)
             </td>
             <td>
-                <input checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
+                <input id="cbOnayla" checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
             </td>
             <td>
-                <a class="btn btn-primary"asp-action="IhaleGuncelle" asp-route-id="@item.IhaleId">Güncelle</a>
-                <a class="btn btn-info" asp-action="IhaleDetaylar" asp-route-id="@item.IhaleId">Detaylar</a>
-                <button type="button" id="btnDelete" value="@item.IhaleId" onclick="btnIhaleSil(this.value)" class="btn btn-danger" >Sil</button>
+                <a class="btn btn-primary" asp-action="IlanGuncelle" asp-route-id="@item.IlanlarId">Güncelle</a>
+                <a class="btn btn-info" asp-action="IlanDetaylar" asp-route-id="@item.IlanlarId">Detaylar</a>
+                <button type="button" value="@item.IlanlarId" onclick="btnIlanSil(this.value)" class="btn btn-danger" >Sil</button> 
             </td>
         </tr>
-}
+}-
     </tbody>
 </table>

@@ -6,9 +6,9 @@
 }
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="~/js/textArea.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="~/js/HaberlerCheckBoxJS.js"></script> 
 <h1>@ViewBag.Baslik</h1>
-
-<h4>Projeler</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
@@ -18,6 +18,17 @@
                 <label asp-for="Ad" class="control-label"></label>
                 <input asp-for="Ad" class="form-control" />
                 <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="ProjeTuru" for="validationServer04" class="form-label">Unvan</label>
+            <select asp-for="ProjeTuru" class="form-select is-invalid" id="validationServer04" required>
+              <option selected disabled value="">Unvan</option>
+              <option value="1">İstihdam</option>
+              <option value="2">Turizm</option>
+              <option value="3">Şehircilik</option>
+              <option value="4">Eğitim</option>
+              <option value="5">Sosyal</option>
+            </select>
             </div>
             <div class="form-group">
                 <label asp-for="KısaAciklama" class="control-label"></label>
@@ -33,9 +44,14 @@
                 <label asp-for="Sira" class="control-label"></label>
                 <input asp-for="Sira" class="form-control" />
                 <span asp-validation-for="Sira" class="text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <input asp-for="ProjeDurumu" id="hdOnayla" type="hidden" value="0" class="form-check-input">
+                <input id="cbOnayla" type="checkbox" />
+                <label asp-for="ProjeDurumu" class="checkLabel">Proje Durumu</label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>

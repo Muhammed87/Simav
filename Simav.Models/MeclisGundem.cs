@@ -13,8 +13,10 @@ namespace Simav.Models
         public int KaydedenKulId { get; set; }
         public int DegistirenKulId { get; set; }
         public DateTime DegistirmeTarihi { get; set; }
+        public string GundemAdi { get; set; }
         public byte? GundemTuru { get; set; }
-        public string DosyaYolu { get; set; }
-        public string KisaAciklama { get; set; }
+        public string? DosyaYolu { get; set; }
+        public string? KisaAciklama { get; set; }
+        public byte? Yayinla { get; set; }
     }
 }
