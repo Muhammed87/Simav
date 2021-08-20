@@ -34,6 +34,7 @@
 		      	</div>
 		      	<h3 class="text-center mb-4">Yonetici Girişi</h3>
 						<form asp-action="Login" class="login-form">
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		      		<div class="form-group">
 		      			<input asp-for="KullaniciAdi" type="text" class="form-control rounded-left" placeholder="Kullanıcı Adı" required>
 		      		</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Simav.Models.Ihaleler>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnIhaleSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<h1>@ViewBag.Baslik</h1>
+
+<p>
+    <a asp-action="YeniIhale">Yeni İhale Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IhaleAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KisaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IhaleAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KisaAciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                <input checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
+            </td>
+            <td>
+                <a class="btn btn-primary"asp-action="IhaleGuncelle" asp-route-id="@item.IhaleId">Güncelle</a>
+                <a class="btn btn-info" asp-action="IhaleDetaylar" asp-route-id="@item.IhaleId">Detaylar</a>
+                <button type="button" id="btnDelete" value="@item.IhaleId" onclick="btnIhaleSil(this.value)" class="btn btn-danger" >Sil</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

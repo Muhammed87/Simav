@@ -11,7 +11,7 @@
 <script src="~/js/sweetalert.min.js"> </script>
 <link href="~/css/sweetalert.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
-<h1>Index</h1>
+<h1>@ViewBag.Baslik</h1>
 <p>
     <a class="btn btn-primary" asp-action="YeniBilgilendirme">Yeni Bilgilendirme Ekle</a>
 </p>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Tarih)
             </td>
             <td>
-                <a class="btn btn-primary" asp-action="BilgilendirmeGuncelle" asp-route-id="@item.BilgilendirmeId">Edit</a>
-                <a class="btn btn-info" asp-action="BilgilendirmeDetaylar" asp-route-id="@item.BilgilendirmeId">Details</a>
-                <button type="button" id="btnDelete" value="@item.BilgilendirmeId" onclick="reply_click(this.value)" class="btn btn-danger" >Delete</button>
+                <a class="btn btn-primary" asp-action="BilgilendirmeGuncelle" asp-route-id="@item.BilgilendirmeId">Güncelle</a>
+                <a class="btn btn-info" asp-action="BilgilendirmeDetaylar" asp-route-id="@item.BilgilendirmeId">Detaylar</a>
+                <button type="button" id="btnDelete" value="@item.BilgilendirmeId" onclick="reply_click(this.value)" class="btn btn-danger" >Sil</button>
             </td>
         </tr>
 }

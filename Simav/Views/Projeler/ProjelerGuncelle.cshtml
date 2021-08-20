@@ -1,0 +1,58 @@
+﻿@model Simav.Models.Projeler
+
+@{
+    ViewData["Title"] = "ProjelerGuncelle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<h1>@ViewBag.Baslik</h1>
+
+<h4>Projeler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProjelerGuncelle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProjeId" />
+            <div class="form-group">
+                <input asp-for="Durum" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KayıtTarihi" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KaydedenKulId" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ad" class="control-label"></label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KısaAciklama" class="control-label"></label>
+                <input asp-for="KısaAciklama" class="form-control" />
+                <span asp-validation-for="KısaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <textarea id="local-upload" asp-for="Icerik" class="form-control" ></textarea>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sira" class="control-label"></label>
+                <input asp-for="Sira" class="form-control" />
+                <span asp-validation-for="Sira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-info" asp-action="Index">Listeye Geri Dön</a>
+</div>
+

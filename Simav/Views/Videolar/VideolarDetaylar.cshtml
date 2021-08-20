@@ -1,0 +1,49 @@
+﻿@model Simav.Models.Videolar
+
+@{
+    ViewData["Title"] = "VideolarDetaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Video Detayları</h1>
+
+<div>
+    <h4>Videolar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Embed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Embed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Resim)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Resim)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="VideolarGuncelle" asp-route-id="@Model.VideoId">Güncelle</a>
+    <a class="btn btn-info" asp-action="Index">Listeye Geri Dön</a>
+</div>

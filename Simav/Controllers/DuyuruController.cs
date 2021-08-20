@@ -17,11 +17,30 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        public IActionResult DuyuruListesi()
+        {
+            ViewBag.Baslik = "Haber Listesi";
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis));
+            return View(haberListesi);
+        }
+        public IActionResult DuyuruDetayi(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+            return View(entity);
+        }
         [AutFilter]
         [HttpGet]
         public IActionResult Index()
         {
-            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis)); ;
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)); ;
             return View(entity);
         }
         [AutFilter]

@@ -1,0 +1,64 @@
+﻿@model Simav.Models.Ihaleler
+
+@{
+    ViewData["Title"] = "IhalenGüncelle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="~/js/HaberlerCheckBoxJS.js"></script> 
+
+<h1>@ViewBag.Baslik</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="IhaleGuncelle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IhaleId" />
+            <div class="form-group">
+                <input asp-for="Durum" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KayıtTarihi" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KaydedenKulId" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="IhaleAdi" class="control-label"></label>
+                <input asp-for="IhaleAdi" class="form-control" />
+                <span asp-validation-for="IhaleAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KisaAciklama" class="control-label"></label>
+                <input asp-for="KisaAciklama" class="form-control" />
+                <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <textarea id="local-upload" asp-for="Icerik" class="form-control" ></textarea>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tarih" class="control-label"></label>
+                <input asp-for="Tarih" class="form-control" />
+                <span asp-validation-for="Tarih" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Onay" id="hdOnayla" type="hidden" value="@Model.Onay" class="form-check-input">
+                <input id="cbOnayla" checked="@Convert.ToBoolean(Model.Onay)" type="checkbox" />
+                <label asp-for="Onay" class="checkLabel">Onayla</label>
+            </div> 
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

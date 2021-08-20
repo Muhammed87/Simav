@@ -14,8 +14,10 @@ namespace Simav.Models
         public int DegistirenKulId { get; set; }
         public DateTime DegistirmeTarihi { get; set; }
         public string Ad { get; set; }
+        public int? ProjeTuru { get; set; }
         public string KısaAciklama { get; set; }
         public string Icerik { get; set; }
         public int? Sira { get; set; }
+        public byte? ProjeDurumu { get; set; }
     }
 }

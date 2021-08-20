@@ -1,0 +1,41 @@
+﻿@model Simav.Models.Haberler
+
+@{
+    ViewData["Title"] = "HaberDetayi";
+}
+<div role="main" class="main">
+		<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a asp-controller="Home" asp-action="Index" >Ana Sayfa</a></li>
+									<li class="active">Haberler</li>
+									<li class="active">@Model.Ad</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>@Model.Ad</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="container" style="background-color:#FFFFFF;">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-posts">
+								<article class="pos">
+								<h2>@Model.Ad</h2>
+										@Html.Raw(Model.Icerik)
+										<div class="post-meta">
+											<span class="pull-right"><i class="fa fa-calendar"></i> @Model.Tarih </span>
+											<span>&nbsp;</span>
+										</div>
+								</article>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>

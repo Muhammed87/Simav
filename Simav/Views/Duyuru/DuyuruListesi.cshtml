@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Simav.Models.Duyuru>
+
+@{
+    ViewData["Title"] = "DuyuruListesi";
+}
+
+<h1>Duyuru Listesi</h1>
+
+<table class="table">
+    <thead>
+        <tr> 
+            <th>
+                @Html.DisplayNameFor(model => model.Ad)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>            
+            <td>
+                <a asp-asp-controller="Duyuru" asp-action="DuyuruDetayi" asp-route-id="@item.DuyuruId" title="@item.KisaAciklama"> @Html.DisplayFor(modelItem => item.Ad)</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

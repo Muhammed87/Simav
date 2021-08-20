@@ -1,10 +1,13 @@
 ﻿using App.Common.Filters;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Simav.Common;
 using Simav.Core;
 using Simav.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,8 +16,11 @@ namespace Simav.Controllers
     public class PersonelController : Controller
     {
         private readonly IService<Personel> _service;
-        public PersonelController(IService<Personel> service)
+
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public PersonelController(IService<Personel> service,IWebHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             _service = service;
         }
         [AutFilter]
@@ -33,8 +39,29 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult YeniBilgilendirme(Personel entity)
+        public async Task<IActionResult> YeniPersonelAsync(Personel entity, IFormFile uploaded_File)
         {
+            if (uploaded_File == null || uploaded_File.Length == 0)
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+            {
+                ModelState.AddModelError("", "Resim Seçilmedi!");
+                return View();
+            }
+            string sImage_Folder = "Personel_Image";
+            string sTarget_Filename = "Personel_Image_" + DateTime.Now + ".jpg";
+            string sPath_WebRoot = _hostEnvironment.WebRootPath;
+            string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+            string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+            using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+            {
+                await uploaded_File.CopyToAsync(stream);
+            }
+            entity.Resim = sTarget_Filename;
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
             entity.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
@@ -106,6 +133,11 @@ namespace Simav.Controllers
                 return Json(new { basarili = false, id = pId, mesaj = "İşlem Başarısız" });
             }
             return Json(new { basarili = true, id = pId, mesaj = "İşlem Başarılı" });
+        }
+        public IActionResult BelediyeBaskani()
+        {
+            Personel entity = _service.Find(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskani));
+            return View(entity);
         }
     }
 }

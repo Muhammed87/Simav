@@ -1,0 +1,47 @@
+﻿@model Simav.Models.Projeler
+
+@{
+    ViewData["Title"] = "YeniProjeler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/js/textArea.js"></script> 
+<h1>@ViewBag.Baslik</h1>
+
+<h4>Projeler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="YeniProjeler">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ad" class="control-label"></label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KısaAciklama" class="control-label"></label>
+                <input asp-for="KısaAciklama" class="form-control" />
+                <span asp-validation-for="KısaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <textarea id="local-upload" asp-for="Icerik" class="form-control" ></textarea>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sira" class="control-label"></label>
+                <input asp-for="Sira" class="form-control" />
+                <span asp-validation-for="Sira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Listeye Geri Dön</a>
+</div>
+

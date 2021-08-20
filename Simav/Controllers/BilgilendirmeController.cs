@@ -35,6 +35,7 @@ namespace Simav.Controllers
         [HttpPost]
         public IActionResult YeniBilgilendirme(Bilgilendirme entity)
         {
+            ViewBag.Baslik = "Yeni Bilgilendirme Ekle";
             entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
             entity.DegistirmeTarihi = DateTime.Now;
             entity.KaydedenKulId = SessionInfo.GirisYapanKullaniciId;
@@ -47,7 +48,7 @@ namespace Simav.Controllers
         [HttpGet]
         public IActionResult BilgilendirmeGuncelle(int? id)
         {
-            ViewBag.Baslik = "Haber Düzenle";
+            ViewBag.Baslik = "Bilgilendirme Düzenle";
             if (id == null)
             {
                 return NotFound();

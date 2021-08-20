@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Simav.Models.Projeler>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"> </script>
+<script src="~/js/btnProjeSilJS.js"> </script>
+<script src="~/js/toastr.js"> </script>
+<script src="~/js/sweetalert.min.js"> </script>
+<link href="~/css/sweetalert.css" rel="stylesheet" />
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<h1>@ViewBag.Baslik</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="YeniProjeler">Yeni Proje</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KısaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sira)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KısaAciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sira)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="ProjelerGuncelle" asp-route-id="@item.ProjeId">Edit</a>
+                <a class="btn btn-info" asp-action="ProjelerDetaylar" asp-route-id="@item.ProjeId">Details</a>
+                <button type="button" value="@item.ProjeId" onclick="btnProjeSil(this.value)" class="btn btn-danger" >Sil</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

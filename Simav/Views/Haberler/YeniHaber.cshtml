@@ -15,7 +15,8 @@
 <hr />
 <div class="row">
     <div class="col-md-8" style="background-color:white">
-        <form asp-action="YeniHaber">
+        <form asp-action="YeniHaber" enctype="multipart/form-data" >
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Ad" class="control-label"></label>
@@ -33,9 +34,8 @@
                 <span asp-validation-for="Icerik" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Resim" class="control-label"></label>
-                <input asp-for="Resim" class="form-control" />
-                <span asp-validation-for="Resim" class="text-danger"></span>
+                <label for="formFile" asp-for="Resim" class="form-label">Dosyaları Seç</label>
+                <input name="uploaded_File" asp-for="Resim" class="form-control" type="file" id="formFile" accept="image/*">
             </div>
             <div class="form-group">
                 <label asp-for="Tarih" class="control-label"></label>

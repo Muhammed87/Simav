@@ -21,21 +21,20 @@ namespace Simav.Models
         public virtual DbSet<Duyuru> Duyurus { get; set; }
         public virtual DbSet<Etkinler> Etkinlers { get; set; }
         public virtual DbSet<Haberler> Haberlers { get; set; }
+        public virtual DbSet<Ihaleler> Ihalelers { get; set; }
         public virtual DbSet<Ilanlar> Ilanlars { get; set; }
         public virtual DbSet<Kullanicilar> Kullanicilars { get; set; }
+        public virtual DbSet<MeclisGundem> MeclisGundems { get; set; }
         public virtual DbSet<Olumler> Olumlers { get; set; }
         public virtual DbSet<Personel> Personels { get; set; }
         public virtual DbSet<Projeler> Projelers { get; set; }
+        public virtual DbSet<Sayfalar> Sayfalars { get; set; }
         public virtual DbSet<Sikayetler> Sikayetlers { get; set; }
         public virtual DbSet<Videolar> Videolars { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SimavBeldeyesiWebsitesi;User ID=sa;Password=123456");
-            }
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -124,10 +123,27 @@ namespace Simav.Models
                 entity.Property(e => e.Tarih).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<Ihaleler>(entity =>
+            {
+                entity.HasKey(e => e.IhaleId);
+
+                entity.ToTable("Ihaleler");
+
+                entity.Property(e => e.DegistirmeTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.KayıtTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.KisaAciklama)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tarih).HasColumnType("datetime");
+
+                entity.Property(e => e.IhaleAdi).HasMaxLength(300);
+            });
+
             modelBuilder.Entity<Ilanlar>(entity =>
             {
-                entity.HasKey(e => e.IlanlarId);
-
                 entity.ToTable("Ilanlar");
 
                 entity.Property(e => e.Ad)
@@ -181,6 +197,25 @@ namespace Simav.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<MeclisGundem>(entity =>
+            {
+                entity.HasKey(e => e.GundemId);
+
+                entity.ToTable("MeclisGundem");
+
+                entity.Property(e => e.DegistirmeTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.DosyaYolu)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.KayıtTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.KisaAciklama)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Olumler>(entity =>
             {
                 entity.HasKey(e => e.OlumId);
@@ -211,10 +246,6 @@ namespace Simav.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Onay)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
-
                 entity.Property(e => e.Tarih).HasColumnType("datetime");
             });
 
@@ -244,7 +275,15 @@ namespace Simav.Models
 
                 entity.Property(e => e.KayıtTarihi).HasColumnType("datetime");
 
+                entity.Property(e => e.Resim)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Tw)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Unvan)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -268,6 +307,25 @@ namespace Simav.Models
                 entity.Property(e => e.KısaAciklama)
                     .HasMaxLength(500)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Sayfalar>(entity =>
+            {
+                entity.HasKey(e => e.SayfaId);
+
+                entity.ToTable("Sayfalar");
+
+                entity.HasComment("Iletisim");
+
+                entity.Property(e => e.DegistirmeTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.KayıtTarihi).HasColumnType("datetime");
+
+                entity.Property(e => e.KisaAciklama).HasMaxLength(500);
+
+                entity.Property(e => e.SayfaId).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.SayfaAdi).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Sikayetler>(entity =>

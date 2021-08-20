@@ -1,0 +1,76 @@
+﻿@model Simav.Models.Sayfalar
+
+@{
+    ViewData["Title"] = "YeniSayfa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>YeniSayfa</h1>
+
+<h4>Sayfalar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="YeniSayfa">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Durum" class="control-label"></label>
+                <input asp-for="Durum" class="form-control" />
+                <span asp-validation-for="Durum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KayıtTarihi" class="control-label"></label>
+                <input asp-for="KayıtTarihi" class="form-control" />
+                <span asp-validation-for="KayıtTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KaydedenKulId" class="control-label"></label>
+                <input asp-for="KaydedenKulId" class="form-control" />
+                <span asp-validation-for="KaydedenKulId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegistirenKulId" class="control-label"></label>
+                <input asp-for="DegistirenKulId" class="form-control" />
+                <span asp-validation-for="DegistirenKulId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegistirmeTarihi" class="control-label"></label>
+                <input asp-for="DegistirmeTarihi" class="form-control" />
+                <span asp-validation-for="DegistirmeTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SayfaAdi" class="control-label"></label>
+                <input asp-for="SayfaAdi" class="form-control" />
+                <span asp-validation-for="SayfaAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SayfaTipi" class="control-label"></label>
+                <input asp-for="SayfaTipi" class="form-control" />
+                <span asp-validation-for="SayfaTipi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <input asp-for="Icerik" class="form-control" />
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KisaAciklama" class="control-label"></label>
+                <input asp-for="KisaAciklama" class="form-control" />
+                <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yayınla" class="control-label"></label>
+                <input asp-for="Yayınla" class="form-control" />
+                <span asp-validation-for="Yayınla" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

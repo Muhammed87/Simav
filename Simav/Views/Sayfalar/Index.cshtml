@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Simav.Models.Sayfalar>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="YeniSayfa">Yeni Sayfa Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SayfaAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SayfaTipi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KisaAciklama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yayınla)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SayfaAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SayfaTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KisaAciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yayınla)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="SayfaGuncelle" asp-route-id="@item.SayfaId">Güncelle</a>
+                <a class="btn btn-info" asp-action="SayfaDetaylar" asp-route-id="@item.SayfaId">Detaylar</a>
+                <button type="button" value="@item.SayfaId" onclick="btnProjeSil(this.value)" class="btn btn-danger" >Sil</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <script src="~/lib/jquery/dist/jquery.min.js"> </script>
-<script src="~/js/btnTaziyeSilJS.js"> </script>
+<script src="~/js/btnPersonelSilJS.js"> </script>
 <script src="~/js/toastr.js"> </script>
 <script src="~/js/sweetalert.min.js"> </script>
 <link href="~/css/sweetalert.css" rel="stylesheet" />
@@ -69,8 +69,8 @@
             </td>
             <td>
                 <a class="btn btn-primary" asp-action="PersonelGuncelle" asp-route-id="@item.PersonelId">Güncelle</a>
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PersonelId">Details</a>
-                <button type="button" value="@item.OlumId" onclick="btnTaziyeSil(this.value)" class="btn btn-danger" >Sil</button> 
+                <a class="btn btn-info" asp-action="PersonelDetaylar" asp-route-id="@item.PersonelId">Detaylar</a>
+                <button type="button" value="@item.PersonelId" onclick="btnPersonelSil(this.value)" class="btn btn-danger" >Sil</button> 
             </td>
         </tr>
 }

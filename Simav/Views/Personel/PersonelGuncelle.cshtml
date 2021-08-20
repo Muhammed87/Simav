@@ -1,0 +1,88 @@
+﻿@model Simav.Models.Personel
+
+@{
+    ViewData["Title"] = "PersonelGuncelle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>PersonelGuncelle</h1>
+
+<h4>Personel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PersonelGuncelle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PersonelId" />
+            <div class="form-group">
+                <input asp-for="Durum" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KayıtTarihi" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <input asp-for="KaydedenKulId" class="form-control" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdSoyad" class="control-label"></label>
+                <input asp-for="AdSoyad" class="form-control" />
+                <span asp-validation-for="AdSoyad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="Statu" for="validationServer04" class="form-label">Unvan</label>
+            <select asp-for="Statu" class="form-select is-invalid" id="validationServer04" onchange="Unvan()" required>
+              <option selected disabled value="">Unvan</option>
+              <option value="1">Belediye Başkanı</option>
+              <option value="2">Belediye Başkan Yardımcısı</option>
+              <option value="3">Meclis Uyesi</option>
+              <option value="4">Muhtar</option>
+              <option value="5">Müdür</option>
+              <option value="6">Müdür Yardımcısı</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unvan" class="control-label"></label>
+                <input asp-for="Unvan" class="form-control" />
+                <span asp-validation-for="Unvan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim" class="control-label"></label>
+                <input asp-for="Resim" class="form-control" />
+                <span asp-validation-for="Resim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tel" class="control-label"></label>
+                <input asp-for="Tel" class="form-control" />
+                <span asp-validation-for="Tel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cv" class="control-label"></label>
+                <input asp-for="Cv" class="form-control" />
+                <span asp-validation-for="Cv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fb" class="control-label"></label>
+                <input asp-for="Fb" class="form-control" />
+                <span asp-validation-for="Fb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tw" class="control-label"></label>
+                <input asp-for="Tw" class="form-control" />
+                <span asp-validation-for="Tw" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

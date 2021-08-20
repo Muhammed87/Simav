@@ -7,7 +7,7 @@ namespace Simav.Models
 {
     public partial class Ilanlar
     {
-        public int? IlanlarId { get; set; }
+        public int IlanlarId { get; set; }
         public byte Durum { get; set; }
         public DateTime KayıtTarihi { get; set; }
         public int KaydedenKulId { get; set; }

@@ -14,9 +14,11 @@ namespace Simav.Models
         public int DegistirenKulId { get; set; }
         public DateTime DegistirmeTarihi { get; set; }
         public string AdSoyad { get; set; }
-        public byte? Unvan { get; set; }
+        public byte? Statu { get; set; }
+        public string Unvan { get; set; }
         public long? Tel { get; set; }
         public string Email { get; set; }
+        public string Resim { get; set; }
         public string Cv { get; set; }
         public string Fb { get; set; }
         public string Tw { get; set; }
