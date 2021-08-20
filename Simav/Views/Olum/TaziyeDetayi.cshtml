@@ -1,0 +1,106 @@
+﻿@model Simav.Models.Olumler
+<% if not Isnumeric(right(request.querystring("tarih"),4)) then
+
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a href="default.asp">Ana Sayfa</a></li>
+									<li class="active">Vefat İlanları</li>
+									<li class="active">@Model.AdSoyad</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>@Model.Tarih Tarihli Vefat İlanları</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+ 
+
+					
+			
+					
+					
+					
+				
+ <div class="row">
+ 
+ 
+ 
+ 
+
+ 
+ 
+ <div class="col-md-4">
+							<div class="featured-box featured-box-secundary">
+								<div class="box-content">
+									<h4>@Model.AdSoyad</h4>
+									@Html.Raw(Model.Icerik)									
+			    <br><br><span><h5><i class="fa fa-clock-o"></i></span> @Model.Saat</h5><br>
+				<span><h5><i class="fas fa-mosque"></i></span> @Model.Cami</h5><br>
+				<span><h5><i class="fa fa-map-marker"></i></span> @Model.Mezarlik</h5><br><br>
+			  
+			  <div class="bottom-box">
+				Vefat Etmiştir. Akraba ve dostlarına duyurulur.
+				<br> <center><strong>Allah Rahmet Eyleye.</strong></center>
+				
+				
+			  </div>
+								</div>
+							</div>
+						</div>
+ 
+ 
+ 
+ 
+		 
+		  
+		   <% if RowSay mod 3 = 0 then %>
+ </div>
+ <% end if %>
+		  
+		  <% rec.movenext
+Loop		  %>
+		  
+		  
+		  
+		  
+		 
+  
+  
+  <% else %>
+  
+  
+  
+  
+  
+  
+    <div class="row">
+      <article class="content col-sm-12" style="background-image:url(img/geciciresim/gercek.png);background-repeat: no-repeat;background-position: right top;">
+		<% =replace(rec("icerik"),chr(13),"<br>") %>
+      </article><!-- .content -->
+    </div>
+	
+	<% end if %>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+				</div>
+
+			</div>

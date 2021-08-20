@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Simav.Models
 {
-    public partial class Etkinler
+    public partial class Etkinlikler
     {
         public int EtkinlikId { get; set; }
         public byte Durum { get; set; }

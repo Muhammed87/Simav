@@ -16,8 +16,8 @@ namespace Simav.Controllers
     public class EtkinliklerController : Controller
     {
         private readonly IWebHostEnvironment _hostEnvironment;
-        private readonly IService<Etkinler> _service;
-        public EtkinliklerController(IService<Etkinler> service, IWebHostEnvironment hostEnvironment)
+        private readonly IService<Etkinlikler> _service;
+        public EtkinliklerController(IService<Etkinlikler> service, IWebHostEnvironment hostEnvironment)
         {
             _hostEnvironment = hostEnvironment;
             _service = service;
@@ -38,7 +38,7 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public async Task<IActionResult> YeniEtkinlikAsync(Etkinler entity, IFormFile uploaded_File)
+        public async Task<IActionResult> YeniEtkinlikAsync(Etkinlikler entity, IFormFile uploaded_File)
         {
             if (uploaded_File == null || uploaded_File.Length == 0)
             {
@@ -87,7 +87,7 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public async Task<IActionResult> EtkinlikGuncelleAsync(Etkinler entity, IFormFile uploaded_File)
+        public async Task<IActionResult> EtkinlikGuncelleAsync(Etkinlikler entity, IFormFile uploaded_File)
         {
             if (ModelState.IsValid)
             {

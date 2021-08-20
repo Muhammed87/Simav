@@ -19,7 +19,7 @@ namespace Simav.Models
 
         public virtual DbSet<Bilgilendirme> Bilgilendirmes { get; set; }
         public virtual DbSet<Duyuru> Duyurus { get; set; }
-        public virtual DbSet<Etkinler> Etkinlers { get; set; }
+        public virtual DbSet<Etkinlikler> Etkinliklers { get; set; }
         public virtual DbSet<Haberler> Haberlers { get; set; }
         public virtual DbSet<Ihaleler> Ihalelers { get; set; }
         public virtual DbSet<Ilanlar> Ilanlars { get; set; }
@@ -83,11 +83,11 @@ namespace Simav.Models
                 entity.Property(e => e.Tarih).HasColumnType("datetime");
             });
 
-            modelBuilder.Entity<Etkinler>(entity =>
+            modelBuilder.Entity<Etkinlikler>(entity =>
             {
                 entity.HasKey(e => e.EtkinlikId);
 
-                entity.ToTable("Etkinler");
+                entity.ToTable("Etkinlikler");
 
                 entity.Property(e => e.DegistirmeTarihi).HasColumnType("datetime");
 

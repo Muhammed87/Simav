@@ -2,6 +2,10 @@
     ViewData["Title"] = "Home Page";
     var haberListesi=ViewData["Haberler"] as List<Haberler>;
     var duyuruListesi=ViewData["Duyurular"] as List<Duyuru>;
+    var ihaleListesi=ViewData["Ihaleler"] as List<Ihaleler>;
+    var taziyeListesi=ViewData["Taziyeler"] as List<Olumler>;
+    var videoListesi=ViewData["Videolar"] as List<Videolar>;
+    var etkinlikListesi=ViewData["Etkinlikler"] as List<Etkinlikler>;
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -83,6 +87,8 @@
 											}
 											}
 										<li><a asp-controller="Haberler" asp-action="HaberListesi" >TÜM HABERLER</a></li>
+
+
 								</ul>
 									</div>
 									<div id="recent11" class="tab-pane">
@@ -97,58 +103,217 @@
 												<li><a asp-controller="Duyuru" asp-action="DuyuruDetayi" asp-route-id="@duyuruListesi[i].DuyuruId">@duyuruListesi[i].Ad</a></li>
 											}
 											}
-									
 									<li><a asp-controller="Duyuru" asp-action="DuyuruListesi">TÜM DUYURULAR</a></li>
+
+
+
+
 								</ul>
 									</div>
 									<div id="recent12" class="tab-pane">
 									<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
-										<% Set rec = Connect.Execute("SELECT * FROM Ilanlar ORDER BY Kimlik DESC")
-	for i=1 to 5
-	if not rec.eof then%>
-									<li><a href="ihale.asp?id=<% =rec("Kimlik") %>"><% =rec("ad") %></a></li>
-									<%end if
-if not rec.eof then
-rec.movenext
-end if
-next%>
+										@{
+							
+							int ihaleSayisi = ihaleListesi.Count;
+							if (ihaleSayisi > 5)
+								ihaleSayisi = 5;
+											for (int i = 0; i < ihaleSayisi; i++)
+											{
+												<li><a asp-controller="Ihaleler" asp-action="IhaleDetayi" asp-route-id="@ihaleListesi[i].IhaleId">@ihaleListesi[i].IhaleAdi</a></li>
+											}
+											}
+									<li><a asp-controller="Ihaleler" asp-action="IhaleListesi">TÜM İHALELER</a></li>
+
+
+
+
 									
-									<li><a href="ihaleler.asp">TÜM İHALELER</a></li>
 								</ul>
 									</div>
 									<div id="recent13" class="tab-pane">
-										<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
-										<% Set rec = Connect.Execute("SELECT * FROM Videolar ORDER BY Kimlik DESC")
-	for i=1 to 5
-	if not rec.eof then%>
-									<li><a href="video.asp?id=<% =rec("Kimlik") %>"><% =rec("ad") %></a></li>
-									<%end if
-if not rec.eof then
-rec.movenext
-end if
-next%>
-									
-									<li><a href="videolar.asp">TÜM VIDEOLAR</a></li>
-								</ul>
+									<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
+										@{
+							
+							int videoSayisi = videoListesi.Count;
+							if (videoSayisi > 5)
+								videoSayisi = 5;
+											for (int i = 0; i < videoSayisi; i++)
+											{
+												<li><a asp-controller="Videolar" asp-action="VideoDetayi" asp-route-id="@videoListesi[i].VideoId">@videoListesi[i].Ad</a></li>
+											}
+											}
+									<li><a asp-controller="Videolar" asp-action="VideoListesi">TÜM VİDEOLAR</a></li>
+
+
+
+
+									</ul>
 									</div>
 									<div id="recent14" class="tab-pane">
-										<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
-										<% Set rec = Connect.Execute("SELECT DISTINCT tarih,onay FROM Olumler WHERE onay=2 ORDER BY tarih DESC")
-	for i=1 to 5
-	if not rec.eof then
-	tarih=rec("tarih")%>
-									<li><a href="vefat.asp?tarih=<% =tarih %>"><%= FormatDateTime(tarih, vbLongDate) %>  Vefat İlanları</a></li>
-									<%end if
-if not rec.eof then
-rec.movenext
-end if
-next%>
-									
-									<li><a href="vefatlar.asp">TÜM VEFAT İLANLARI</a></li>
-								</ul>
+									<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
+										@{
+							
+							int taziyeSayisi = taziyeListesi.Count;
+							if (taziyeSayisi > 5)
+								taziyeSayisi = 5;
+											for (int i = 0; i < taziyeSayisi; i++)
+											{
+												<li><a asp-controller="Olum" asp-action="TaziyeDetayi" asp-route-id="@taziyeListesi[i].OlumId">@taziyeListesi[i].AdSoyad</a></li>
+											}
+											}
+									<li><a asp-controller="Olum" asp-action="TaziyeListesi">TÜM TAZİYE İLANLARI</a></li>
+
+
+
+											</ul>
+
+
+								
 									</div>
 								</div>
 							</div>
 						</div>
 						
+					</div>
+
+
+					<div class="container">
+
+					
+
+				</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="row" >
+								<div class="col-md-12">
+									<h3>WEB <strong>TV</strong></h3>
+									
+
+
+
+									
+									<div class="owl-carousel" data-plugin-options='{"autoHeight": true, "center": true, "margin": 10,"items": 3, "autoplay": true, "autoplayTimeout": 3000}' >
+									
+										
+										@{
+						
+											for (int i = 0; i < videoSayisi; i++)
+											{
+												<div>
+														<a asp-controller="Videolar" asp-action="VideoDetayi" asp-route-id="@videoListesi[i].VideoId" class="thumb-info"><img alt="" class="img-responsive img-rounded" src="https://img.youtube.com/vi/@videoListesi[i].Embed/mqdefault.jpg" ></a>
+												</div>
+											}
+											}
+
+
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="row" >
+								<div class="col-md-12">
+									<h4><strong> ETKİNLİKLER</strong></h4>
+									<div class="owl-carousel" data-plugin-options='{"autoHeight": true, "center": true, "margin": 10,"items": 3, "autoplay": true, "autoplayTimeout": 3000}' >
+									@{
+							int etkinlikSayisi = etkinlikListesi.Count;
+							if (etkinlikSayisi > 5)
+								etkinlikSayisi = 5;	
+											for (int i = 0; i < etkinlikSayisi; i++)
+											{
+												<div>
+														<a asp-controller="Etkinlikler" asp-action="EtkinlikDetayi" asp-route-id="@etkinlikListesi[i].EtkinlikId" class="thumb-info"><img alt="" class="img-responsive img-rounded" src="~/images/Etkinlik_Image/@etkinlikListesi[0].Resim" ></a>
+												</div>
+											}
+											}
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<!-- Etkinlikler-->
+					
+					
+					<div class="row">
+
+						<div class="col-md-12">
+							<h3>HIZLI <strong>ERİŞİM</strong></h3>
+						</div>
+
+						<ul class="portfolio-list">
+							<div class="portfolio-item  col-md-2">
+									<a href="yatirimdestek.asp" class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/1.png">
+										
+									</a>
+								</div><div class="portfolio-item  col-md-2">
+									<a href="bilgilendirme.asp" " class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/2.png">
+										
+									</a>
+								</div>
+								<div class="portfolio-item  col-md-2">
+									<a href="projeler.asp" class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/3.png">
+										
+									</a>
+								</div>
+								<div class="portfolio-item  col-md-2">
+									<a href="ulasim.asp" class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/4.png">
+										
+									</a>
+								</div>
+								<div class="portfolio-item  col-md-2">
+									<a href="baskanamesajgonder.asp" class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/6.png">
+										
+									</a>
+								</div>
+								<div class="portfolio-item  col-md-2">
+									<a href="img/projects/project.jpg" class="thumb-info">
+										<img alt="" class="img-responsive" src="img/ortalink/5.png">
+										
+									</a>
+								</div>
+							
+						</ul>
+
+					</div>
+					
+					
+					<div class="row">
+
+						<div class="col-md-6">
+							<h3>NÖBETÇİ <strong>ECZANELER</strong></h3>
+						</div><div class="col-md-6">
+							<h3>HAVA <strong>DURUMU</strong></h3>
+						</div>
+
+						<ul class="portfolio-list">
+							<div class="portfolio-item  col-md-6">
+									
+									<div style="margin:auto;text-align:center;"><iframe src="https://www.eczaneler.gen.tr/iframe.php?lokasyon=1625" name="buraya tıklayınız" class="portfolio-item  col-md-12" style="height:140px;border:none;"></iframe></div>
+								
+								</div>
+								
+								<div class="portfolio-item  col-md-6">
+									<img src="http://www.mgm.gov.tr/sunum/sondurum-show-2.aspx?m=SIMAV&rC=111&rZ=fff" style="width:12px; height:100px;" alt="SIMAV" /><img src="http://www.mgm.gov.tr/sunum/tahmin-show-2.aspx?m=SIMAV&basla=1&bitir=5&rC=111&rZ=fff" style="width:400px; height:100px;" alt="SIMAV" />
+								</div>
+								
+							
+						</ul>
+
 					</div>

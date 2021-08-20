@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Simav.Models.Olumler>
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a asp-controller="Olumler" asp-action="Index" >Ana Sayfa</a></li>
+									<li class="active">Tüm Vefat İlanları</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>Tüm Vefat İlanları</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container" style="background-color:#FFFFFF;">
+
+
+					
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div id="popular11" class="tab-pane active">
+										
+										<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
+										@foreach (var item in Model){
+									<li><a asp-controller="Olum" asp-action="TaziyeDetayi" asp-route-id="@item.Tarih">@item.Tarih TARİHLİ VEFAT İLANLARI</a></li>
+									}
+									
+								</ul>
+									</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>

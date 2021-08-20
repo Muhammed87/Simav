@@ -17,6 +17,25 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        public IActionResult IhaleListesi()
+        {
+            ViewBag.Baslik = "Ihale Listesi";
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis));
+            return View(haberListesi);
+        }
+        public IActionResult IhaleDetayi(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+            return View(entity);
+        }
         [AutFilter]
         [HttpGet]
         public IActionResult Index()
