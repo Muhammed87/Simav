@@ -23,6 +23,11 @@ namespace Simav.Controllers
             _hostEnvironment = hostEnvironment;
             _service = service;
         }
+        public IActionResult BaskanYardimcilari()
+        {
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskaniYardimcisi));
+            return View(entity);
+        }
         [AutFilter]
         [HttpGet]
         public IActionResult Index()
@@ -30,6 +35,7 @@ namespace Simav.Controllers
             var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)); ;
             return View(entity);
         }
+       
         [AutFilter]
         [HttpGet]
         public IActionResult YeniPersonel()

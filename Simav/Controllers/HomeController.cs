@@ -20,7 +20,8 @@ namespace Simav.Controllers
         private readonly IService<Olumler> _olumler;
         private readonly IService<Videolar> _videolar;
         private readonly IService<Etkinlikler> _etkinlikler;
-        public HomeController(ILogger<HomeController> logger,IService<Haberler> haber, IService<Duyuru> duyuru, IService<Ihaleler> ihale, IService<Olumler> olumler, IService<Videolar> videolar, IService<Etkinlikler> etkinlikler)
+        private readonly IService<Personel> _belediyeBaskani;
+        public HomeController(ILogger<HomeController> logger,IService<Haberler> haber, IService<Duyuru> duyuru, IService<Ihaleler> ihale, IService<Olumler> olumler, IService<Videolar> videolar, IService<Etkinlikler> etkinlikler,IService<Personel> belediyeBaskani)
         {
             _duyuru = duyuru;
             _haber = haber;
@@ -28,6 +29,7 @@ namespace Simav.Controllers
             _olumler = olumler;
             _videolar = videolar;
             _etkinlikler = etkinlikler;
+            _belediyeBaskani = belediyeBaskani;
             _logger = logger;
         }
 
@@ -51,7 +53,10 @@ namespace Simav.Controllers
             ViewData["Videolar"] = videoListesi;
             List<Etkinlikler> etkinlikListesi = _etkinlikler.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
             duyuruListesi.Reverse();
-            ViewData["Etkinlikler"] = etkinlikListesi;
+            ViewData["Etkinlikler"] = etkinlikListesi; 
+            Personel belediyeBaskani = _belediyeBaskani.Find(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskani));
+            duyuruListesi.Reverse();
+            ViewData["BelediyeBaskani"] = belediyeBaskani;
             return View();
         }
 

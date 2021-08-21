@@ -1,11 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
     var haberListesi=ViewData["Haberler"] as List<Haberler>;
     var duyuruListesi=ViewData["Duyurular"] as List<Duyuru>;
     var ihaleListesi=ViewData["Ihaleler"] as List<Ihaleler>;
     var taziyeListesi=ViewData["Taziyeler"] as List<Olumler>;
     var videoListesi=ViewData["Videolar"] as List<Videolar>;
     var etkinlikListesi=ViewData["Etkinlikler"] as List<Etkinlikler>;
+	var belediyeBaskani = ViewData["BelediyeBaskani"] as Personel;
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -24,13 +25,13 @@
 @{
      
      <div class="carousel-item active">
-      <img class="d-block w-100" src="~/images/Haber_Image/@haberListesi[0].Resim" alt="First slide">
+      <img class="d-block w-100" src="~/images/Haber_Image/@haberListesi[0].Resim" style="height:400px; width:1150;">
     </div>
     
      for(int i=1;i<haberListesi.Count;i++){
 
     <div class="carousel-item">
-      <img class="d-block w-100" src="~/images/Haber_Image/@haberListesi[i].Resim">
+      <img class="d-block w-100" src="~/images/Haber_Image/@haberListesi[i].Resim" style="height:400px; width:1150;">
     </div>
     }
 }
@@ -49,8 +50,8 @@
 									<a asp-controller="Personel" asp-action="BelediyeBaskani" class="thumb-info">
 										<img alt="" class="img-responsive" src="~/images/Personel_Image/adilbicer.png">
 										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Av. ADİL BİÇER</span>
-											<span class="thumb-info-type">Belediye Başkanı</span>
+											<span class="thumb-info-inner">@belediyeBaskani.AdSoyad</span>
+											<span class="thumb-info-type">@belediyeBaskani.Unvan</span>
 										</span>
 									</a>
 								</div>
@@ -243,6 +244,7 @@
 						</div>
 						
 					</div>
+					</div>
 					<!-- Etkinlikler-->
 					
 					
@@ -298,7 +300,8 @@
 
 						<div class="col-md-6">
 							<h3>NÖBETÇİ <strong>ECZANELER</strong></h3>
-						</div><div class="col-md-6">
+						</div>
+						<div class="col-md-6">
 							<h3>HAVA <strong>DURUMU</strong></h3>
 						</div>
 
