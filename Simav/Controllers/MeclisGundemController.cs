@@ -22,13 +22,24 @@ namespace Simav.Controllers
             _hostEnvironment = hostEnvironment;
             _service = service;
         }
-
         public IActionResult GundemListesi()
         {
             ViewBag.Baslik = "Gündem Listesi";
             var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
             return View(haberListesi);
         }
+        public IActionResult MeclisGundemListesi()
+        {
+            ViewBag.Baslik = "Gündem Listesi";
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.GundemTuru.Equals((byte)Enums.GundemTuru.GundemMaddeleri));
+            return View(haberListesi);
+        }
+        public IActionResult MeclisKararListesi()
+        {
+            var haberListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.GundemTuru.Equals((byte)Enums.GundemTuru.GundemKararlari));
+            return View(haberListesi);
+        }
+        [AutFilter]
         public IActionResult GundemDetayi(int? id)
         {
             if (id == null)

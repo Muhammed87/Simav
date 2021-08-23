@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Simav.Core\Simav.Core.csproj" />
+    <ProjectReference Include="..\Simav.Data\Simav.Data.csproj" />
+    <ProjectReference Include="..\Simav.Models\Simav.Models.csproj" />
   </ItemGroup>
 
 </Project>

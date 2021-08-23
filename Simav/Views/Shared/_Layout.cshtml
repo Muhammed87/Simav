@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Simav.Common
+@using Simav.Controllers
+@using Simav.Core
+@using Simav.Service
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -50,7 +55,7 @@
         <header id="header">
             <div class="container">
                 <div class="logo">
-                    <a href="default.asp">
+                    <a asp-controller="Home" asp-action="Index">
                         <img alt="Porto" width="192" height="81" data-sticky-width="102" data-sticky-height="40" src="~/img/belediyelogo.png">
                     </a>
                 </div>
@@ -68,7 +73,7 @@
                     <ul class="nav nav-pills nav-top">
 
                         <li>
-                            <a href="iletisim.asp"><i class="fa fa-angle-right"></i>İletişim</a>
+                            <a asp-controller="Sayfalar" asp-action="Iletisim"><i class="fa fa-angle-right"></i>İletişim</a>
                         </li>
                         <li class="phone">
                             <span><i class="fa fa-phone"></i>(274) 513-7006 - 07 - 08 - 09</span>
@@ -110,14 +115,14 @@
                                                             <span class="mega-menu-sub-title">İDARE</span>
                                                             <ul class="sub-menu">
                                                                 <li><a asp-controller="Personel" asp-action="BaskanYardimcilari">Başkan Yardımcıları</a></li>
-                                                                <li><a href="mudurler.asp">Müdürler</a></li>
-                                                                <li><a href="yonetimsema.asp">Yönetim Şeması</a></li>
-                                                                <li><a href="meclis.asp">Belediye Meclisi</a></li>
-                                                                <li><a href="komisyonlar.asp">Meclis Komisyonları</a></li>
-                                                                <li><a href="meclisgundemleri.asp">Meclis Gündemleri</a></li>
-                                                                <li><a href="mecliskararlari.asp">Meclis Kararları</a></li>
-                                                                <li><a href="encumen.asp">Encümen Üyeleri</a></li>
-                                                                <li><a href="muhtarlar.asp">Muhtarlar</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="Mudurler">Müdürler</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="YonetimSemasi" >Yönetim Şeması</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="Meclis">Belediye Meclisi</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="MeclisKomisyonlari">Meclis Komisyonları</a></li> @*<-buraya mecliskomisyonları ve komisyonuyeleri adı için iki tablo oluştulması ve yönetim panelinde gerekli sayfalarının oluştulması lazım-></-buraya>*@ 
+                                                                <li><a asp-controller="MeclisGundem" asp-action="MeclisGundemListesi">Meclis Gündemleri</a></li>
+                                                                <li><a asp-controller="MeclisGundem" asp-action="MeclisKararListesi">Meclis Kararları</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="EncumenListesi">Encümen Üyeleri</a></li>
+                                                                <li><a asp-controller="Personel" asp-action="MuhtarListesi">Muhtarlar</a></li>
                                                             </ul>
                                                         </li>
                                                     </ul>
@@ -127,12 +132,13 @@
                                                         <li>
                                                             <span class="mega-menu-sub-title">KURUM</span>
                                                             <ul class="sub-menu">
-                                                                <li><a href="tarihce.asp">Tarihçe</a></li>
-                                                                <li><a href="vizyonmisyon.asp">Vizyon ve Misyon </a></li>
-                                                                <li><a href="kurumsalkimlik.asp">Kurumsal Kimlik</a></li>
-                                                                <li><a href="yonetmelikler.asp">Yönetmelikler</a></li>
-                                                                <li><a href="belediyebaskanlari.asp">Belediye Başkanları</a></li>
-                                                                <li><a href="belediyesirketleri.asp">Belediye Şirketleri</a></li>
+                                                            @{
+                                                                    SayfalarService sayfalar = new SayfalarService();
+                                                                    var kurumSayfaListesi = sayfalar.SayfalariGetir((byte)Enums.SayfaTipi.Kurum);
+                                                            }
+                                                            @foreach (var item in kurumSayfaListesi){
+                                                            <li><a asp-controller="Sayfalar" asp-action="SayfaIcerigi" asp-route-id="@item.SayfaId">@item.SayfaAdi</a></li>
+                                                            }
                                                             </ul>
                                                         </li>
                                                     </ul>
@@ -142,8 +148,8 @@
                                                         <li>
                                                             <span class="mega-menu-sub-title">SUNUM</span>
                                                             <ul class="sub-menu">
-                                                                <li><a href="projeler.asp">Projeler</a></li>
-                                                                <li><a href="faaliyetraporlari.asp">Faaliyet Raporları</a></li>
+                                                                <li><a asp-controller="Projeler" asp-action="ProjeSayfasi" >Projeler</a></li>
+                                                                <li><a asp-controller="Projeler" asp-action="FaaliyetRaporu" >Faaliyet Raporları</a></li>
                                                             </ul>
 
 
@@ -187,14 +193,12 @@
                                     İLÇEMİZ	<i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="ismininanlami.asp">İsminin Anlamı</a></li>
-                                    <li><a href="ilcetarihi.asp">Tarihi</a></li>
-                                    <li><a href="eynalkaplicalari.asp">Eynal Kaplıcaları</a></li>
-                                    <li><a href="seyirterasi.asp">Karşıyaka Seyir Terası</a></li>
-                                    <li><a href="kentmuzesi.asp">Simav Kent Müzesi</a></li>
-                                    <li><a href="golcuk.asp">Gölcük Mesire Alanı</a></li>
-                                    <li><a href="tarihiyerler.asp">Tarihi Yerler</a></li>
-                                    <li><a href="gecmistesimav.asp">Geçmişte Simav</a></li>
+                                    @{
+                                                                    var ilceSayfaListesi = sayfalar.SayfalariGetir((byte)Enums.SayfaTipi.Ilcemiz);
+                                                            }
+                                                            @foreach (var item in ilceSayfaListesi){
+                                                            <li><a asp-controller="Sayfalar" asp-action="SayfaIcerigi" asp-route-id="@item.SayfaId">@item.SayfaAdi</a></li>
+                                                            }
                                 </ul>
                             </li>
 
@@ -206,9 +210,12 @@
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-
-                                    <li><a href="iletisim.asp">İletişim</a></li>
-                                    <li><a href="birimtelefon.asp">Birim Telefonları</a></li>
+                                    @{
+                                                                    var iletisiSayfaListesi = sayfalar.SayfalariGetir((byte)Enums.SayfaTipi.Iletisim);
+                                                            }
+                                                            @foreach (var item in iletisiSayfaListesi){
+                                                            <li><a asp-controller="Sayfalar" asp-action="SayfaIcerigi" asp-route-id="@item.SayfaId">@item.SayfaAdi</a></li>
+                                                            }
                                 </ul>
                             </li>
 

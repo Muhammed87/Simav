@@ -17,6 +17,25 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        public IActionResult SayfaIcerigi(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+
+            return View(entity);
+        }
+        public IActionResult Iletisim()
+        {
+            return View();    
+        }
+
         [AutFilter]
         [HttpGet]
         public IActionResult Index()

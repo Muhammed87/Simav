@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Simav.Models.MeclisGundem>
+
+@{
+    ViewData["Title"] = "MeclisGundemListesi";
+}
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a href="default.asp">Ana Sayfa</a></li>
+									<li class="active">Kurumsal</li>
+									<li class="active">Meclis Gündemleri</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>Meclis Gündemleri</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container" style="background-color:#FFFFFF;">
+			<!-- YAZI BÖLÜMÜ -->
+<!-- YAZI BÖLÜMÜ -->
+<section id="main">
+  <header class="page-header">
+    <div class="container">
+      <h4 class="title" style="color:#2c8ccc"><strong>Meclis Gündemleri</strong></h4>
+    </div>	
+  </header>
+   <div class="container">
+    <table class="table">
+			  
+			  <tbody>
+				  @foreach (var item in Model){
+			  	<tr>
+				<td style="text-align:left;font-size:18px;">@item.GundemAdi</td>
+				  <td style="text-align:right;"><a href="pdf/MeclisGundem_Dosyalari\@item.DosyaYolu" target="_blank">
+					<button type="button" class="btn btn-border btn-primary"><i class="fa fa-search"></i>&nbsp; Oku</button></a>
+				  <a href="pdf/mecliskararozetleri\2020\subat_2.pdf" download target="_self">
+					<button type="button" class="btn btn-border btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Kaydet</button></a>
+				</td>
+				</tr>
+				}  
+			
+			  </tbody>
+			</table>
+  </div><!-- .container -->
+</section>
+<!-- .YAZI BÖLÜMÜ -->
+  </article><!-- .content -->
+	  
+      
+  </div><!-- .container --
+		  
+<!-- .YAZI BÖLÜMÜ -->
+
+
+

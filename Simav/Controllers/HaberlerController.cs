@@ -27,6 +27,7 @@ namespace Simav.Controllers
         {
             ViewBag.Baslik = "Haber Listesi";
             var haberListesi = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis));
+            haberListesi.Reverse();
             return View(haberListesi);
         }
         public IActionResult HaberDetayi(int? id)
@@ -47,6 +48,7 @@ namespace Simav.Controllers
         {
             ViewBag.Baslik = "Haber Listesi";
             var haberListesi = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
+            haberListesi.Reverse();
             return View(haberListesi);
         }
         [HttpGet]

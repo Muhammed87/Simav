@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Simav.Common\Simav.Common.csproj" />
     <ProjectReference Include="..\Simav.Core\Simav.Core.csproj" />
     <ProjectReference Include="..\Simav.Models\Simav.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

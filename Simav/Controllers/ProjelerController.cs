@@ -17,12 +17,36 @@ namespace Simav.Controllers
         {
             _service = service;
         }
+        public IActionResult ProjeSayfasi()
+        {
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
+            ViewBag.TamamlananProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi)).Count;
+            ViewBag.ProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)).Count;
+            ViewBag.TamamlananIstihdamProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Istihdam)).Count;
+            ViewBag.IstihdamProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Istihdam)).Count;
+            ViewBag.TamamlananEgitimProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Egitim)).Count;
+            ViewBag.EgitimProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Egitim)).Count;
+            ViewBag.TamamlananSehircilikProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sehircilik)).Count;
+            ViewBag.SehircilikProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sehircilik)).Count;
+            ViewBag.TamamlananSosyalProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sosyal)).Count;
+            ViewBag.SosyalProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sosyal)).Count;
+            ViewBag.TamamlanaTurizmProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Turizm)).Count;
+            ViewBag.TurizmProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Turizm)).Count;
+            return View(entity);
+        }
+        public IActionResult FaaliyetRaporu()
+        {
+            return View();
+
+        }
+
         [AutFilter]
         [HttpGet]
         public IActionResult Index()
         {
             var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)); ;
             return View(entity);
+
         }
         [AutFilter]
         [HttpGet]

@@ -1,0 +1,49 @@
+﻿@model Simav.Models.Sayfalar
+
+@{
+    ViewData["Title"] = "SayfaIcerigi";
+}
+
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a asp-controller="Home" asp-action="Index" >Ana Sayfa</a></li>
+									<li class="active">Kurumsal</li>
+									<li class="active">@Model.SayfaAdi<li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>BELELDİYE TARIHİ</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container" style="background-color:#FFFFFF;">
+							
+							
+							
+<!-- YAZI BÖLÜMÜ -->
+<!-- YAZI BÖLÜMÜ -->
+<section id="main">
+		<div class="container">
+    <div class="row">
+      <article class="content col-sm-12 col-md-12">
+		<header class="page-header">
+		
+		</header>	
+		  @Html.Raw(@Model.Icerik);
+      </article>
+    </div>
+  </div>
+  </section>
+			
+			</div>		
+
+			</div>

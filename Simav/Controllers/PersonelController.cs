@@ -28,6 +28,35 @@ namespace Simav.Controllers
             var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskaniYardimcisi));
             return View(entity);
         }
+        public IActionResult MeclisKomisyonlari()//TODO Meclis Komisyanlar işlemleri için Ayrı kontoller oluşturulması gerekir bunun için öncelikle gerekli tablolar ve modellerin oluşturulması gerekir.
+        {
+
+            return View();
+        }
+        public IActionResult Meclis()
+        {
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.MeclisUyesi));
+            return View(entity);
+        }
+        public IActionResult YonetimSemasi()
+        {
+            return View();
+        }
+        public IActionResult MuhtarListesi()
+        {
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.Muhtar));
+            return View(entity);
+        }
+
+        public IActionResult Mudurler()
+        {
+            var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.Mudur));
+            return View(entity);
+        }
+        public IActionResult EncumenListesi() //TODO: Burası için Tablo oluşturulması lazım ve ilgili tablodan bilgiler çekilmesi lazım
+        {
+            return View();
+        }
         [AutFilter]
         [HttpGet]
         public IActionResult Index()
@@ -55,7 +84,7 @@ namespace Simav.Controllers
             if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
 
             {
-                ModelState.AddModelError("", "Resim Seçilmedi!");
+                ModelState.AddModelError("", "Resim Türü jpg olmadir Seçilmedi!");
                 return View();
             }
             string sImage_Folder = "Personel_Image";

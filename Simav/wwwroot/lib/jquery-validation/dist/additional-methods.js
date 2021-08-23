@@ -430,7 +430,8 @@ $.validator.addMethod( "creditcardtypes", function( value, element, param ) {
 
 /**
  * Validates currencies with any given symbols by @jameslouiz
- * Symbols can be optional or required. Symbols required by default
+ * Symbols can be optional or required. Symbols required by 
+ * ult
  *
  * Usage examples:
  *  currency: ["£", false] - Use false for soft currency validation
