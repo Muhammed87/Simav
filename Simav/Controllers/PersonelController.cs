@@ -88,7 +88,7 @@ namespace Simav.Controllers
                 return View();
             }
             string sImage_Folder = "Personel_Image";
-            string sTarget_Filename = "Personel_Image_" + DateTime.Now + ".jpg";
+            string sTarget_Filename = "Personel_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
             string sPath_WebRoot = _hostEnvironment.WebRootPath;
             string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
             string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
@@ -123,11 +123,32 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpPost]
-        public IActionResult PersonelGuncelle(Personel entity)
+        public async Task<IActionResult> PersonelGuncelleAsync(Personel entity, IFormFile uploaded_File)
         {
             ViewBag.Baslik = "Personel Güncelle";
             if (ModelState.IsValid)
             {
+                if (uploaded_File == null || uploaded_File.Length == 0)
+                {
+                    ModelState.AddModelError("", "Resim Seçilmedi!");
+                    return View();
+                }
+                if (uploaded_File.ContentType.IndexOf("image", StringComparison.OrdinalIgnoreCase) < 0)
+
+                {
+                    ModelState.AddModelError("", "Resim Türü jpg olmadir Seçilmedi!");
+                    return View();
+                }
+                string sImage_Folder = "Personel_Image";
+                string sTarget_Filename = "Personel_Image_" + DateTime.Now.ToString().Replace(" ", string.Empty).Replace(":", string.Empty) + ".jpg";
+                string sPath_WebRoot = _hostEnvironment.WebRootPath;
+                string sPath_of_Target_Folder = sPath_WebRoot + "\\images\\" + sImage_Folder + "\\";
+                string sFile_Target_Original = sPath_of_Target_Folder + sTarget_Filename;
+                using (var stream = new FileStream(sFile_Target_Original, FileMode.Create))
+                {
+                    await uploaded_File.CopyToAsync(stream);
+                }
+                entity.Resim = sTarget_Filename;
                 entity.DegistirenKulId = SessionInfo.GirisYapanKullaniciId;
                 entity.DegistirmeTarihi = DateTime.Now;
                 _service.Update(entity);

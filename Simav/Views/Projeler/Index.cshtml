@@ -77,7 +77,7 @@
             @Html.DisplayFor(modelItem => item.KısaAciklama)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjeDurumu)
+            <input checked="@Convert.ToBoolean(item.ProjeDurumu)" type="checkbox" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sira)

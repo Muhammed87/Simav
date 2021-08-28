@@ -20,28 +20,30 @@
 }
 
 function SilmeIslemi(id) {
-    $.ajax({
-        method: 'POST',
-        //data: { pMasraf: parseFloat($('#txtMasraflar').val()), pGelir: parseFloat($('#txtGelirler').val()) },
-        data: { pId: id },
-        url: '/Projeler/ProjelerSil',
-        beforeSend: function () {
+    setTimeout(function () {
+        $.ajax({
+            method: 'POST',
+            //data: { pMasraf: parseFloat($('#txtMasraflar').val()), pGelir: parseFloat($('#txtGelirler').val()) },
+            data: { pId: id },
+            url: '/Projeler/ProjelerSil',
+            beforeSend: function () {
 
-        }
-    }).done(function (veri) {
-        console.log(veri);
-        if (veri.basarili) {
-            SilmeBasarili(veri);
-        }
-        else {
-            SilmeBasarisiz(veri.mesaj);
-        }
+            }
+        }).done(function (veri) {
+            console.log(veri);
+            if (veri.basarili) {
+                SilmeBasarili(veri);
+            }
+            else {
+                SilmeBasarisiz(veri.mesaj);
+            }
 
-    }).fail(function () {
+        }).fail(function () {
 
-    }).always(function () {
+        }).always(function () {
 
-    });
+        });
+    }, 1000);
 }
 function SilmeBasarili(veri) {
     //alert("İşlem Başarıyla Tamamlandı");
