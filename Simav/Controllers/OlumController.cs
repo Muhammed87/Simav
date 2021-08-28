@@ -21,20 +21,23 @@ namespace Simav.Controllers
         public IActionResult TaziyeListesi()
         {
             ViewBag.Baslik = "Taziye Listesi";
-            var taziyeListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis)).OrderBy(x => x.Tarih); ;
+            var taziyeListesi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Onay.Equals((byte)Enums.HaberDurumu.Onaylanmis)).OrderBy(x => x.Tarih);
+            taziyeListesi.Reverse();
             return View(taziyeListesi);
         }
-        public IActionResult TaziyeDetayi(DateTime? id)
+        public IActionResult TaziyeDetayi(string? id)
         {
+            DateTime Tarih = Convert.ToDateTime(id);
             if (id == null)
             {
                 return NotFound();
             }
-            var entity = _service.FindAll(x=>x.Tarih.Equals(id));
+            var entity = _service.FindAll(x=>x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Tarih.Equals(Tarih));
             if (entity == null)
             {
                 return NotFound();//Bulunamadı
             }
+            ViewBag.Tarih = id;
             return View(entity);
         }
 

@@ -5,13 +5,17 @@
 	ViewData["Title"] = "ProjeSayfasi";
 
 }
+	<div role="main" class="main">
+
+				
+				
+
+				<div class="container">
 <div class="row">
 	<div class="col-lg-12">
 		<h2>Projeler</h2>
 
-		<div class="row">
-			@if (ViewBag.ProjeSayisi!=0)
-			{
+		<div class="row">		
 				<div class="col-md-6">
 					<section class="panel">
 						<header class="panel-heading">
@@ -20,9 +24,10 @@
 						<div class="panel-body">
 							<div class="row text-center">
 								<div class="col-md-12">
-									<div class="circular-bar">
-										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananProjeSayisi/@ViewBag.ProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
-											<strong><span class="percent">@ViewBag.TamamlananProjeSayisi/@ViewBag.ProjeSayisi</span>%</strong>
+									<canvas id="pieChart"></canvas>
+												<div class="circular-bar">
+										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananProjeYuzdesi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+											<strong><span class="percent">@ViewBag.TamamlananProjeYuzdesi</span>%</strong>
 										</div>
 									</div>
 								</div>
@@ -30,7 +35,6 @@
 						</div>
 					</section>
 				</div>
-			}
 			<div class="col-md-6">
 									<section class="panel">
 										<header class="panel-heading">
@@ -38,41 +42,30 @@
 										</header>
 										<div class="panel-body">
 											<div class="row text-center">
-							@if (ViewBag.IstihdamProjeSayisi != 0)
-							{
 								<div class="col-md-4">
 										<div class="circular-bar">
-											<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananIstihdamProjeSayisi /ViewBag.IstihdamProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+											<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananIstihdamProjeYuzdesi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
 												<strong>İstihdam</strong>
-												<label><span class="percent"><% =SayiYapilanYuzde0 %></span>%</label>
+												<label><span class="percent">@ViewBag.TamamlananIstihdamProjeYuzdesi</span>%</label>
 											</div>
 										</div>
 									</div>
-								}
-								@if (ViewBag.TurizmProjeSayisi != 0)
-								{
 								<div class="col-md-4">
 									<div class="circular-bar">
-										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlanaTurizmProjeSayisi/ViewBag.TurizmProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananTurizmProjeYuzdesi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
 											<strong>Turizm</strong>
-											<label><span class="percent"><% =SayiYapilanYuzde1 %></span>%</label>
+											<label><span class="percent">@ViewBag.TamamlananTurizmProjeYuzdesi</span>%</label>
 										</div>
 									</div>
 								</div>
-							}
-							@if (ViewBag.SehircilikProjeSayisi != 0)
-							{
 								<div class="col-md-4">
 									<div class="circular-bar">
-										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananSehircilikProjeSayisi /ViewBag.SehircilikProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananSehircilikProjeYuzdesi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
 											<strong>Şehircilik</strong>
-											<label><span class="percent">@ViewBag.TamamlananSehircilikProjeSayisi /ViewBag.SehircilikProjeSayisi</span>%</label>
+											<label><span class="percent">@ViewBag.TamamlananSehircilikProjeYuzdesi</span>%</label>
 										</div>
 									</div>
 								</div>
-							}
-							@if (ViewBag.EgitimProjeSayisi != 0)
-							{
 								<div class="col-md-4">
 									<div class="circular-bar">
 										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananEgitimProjeSayisi / ViewBag.EgitimProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
@@ -81,18 +74,14 @@
 										</div>
 									</div>
 								</div>
-							}
-							@if (@ViewBag.SosyalProjeSayisi != 0)
-							{
 								<div class="col-md-4">
 									<div class="circular-bar">
-										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananSosyalProjeSayisi/ViewBag.SosyalProjeSayisi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+										<div class="circular-bar-chart" data-percent="@ViewBag.TamamlananSosyalProjeYuzdesi" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
 											<strong>Sosyal</strong>
-											<label><span class="percent">@(ViewBag.TamamlananSosyalProjeSayisi/ViewBag.SosyalProjeSayisi)*100</span>%</label>
+											<label><span class="percent">@ViewBag.TamamlananSosyalProjeYuzdesi</span>%</label>
 										</div>
 									</div>
 								</div>
-							}
 				
 				
 											</div>
@@ -114,7 +103,7 @@
 				
 				
 	@foreach (var item in Model){
-							@if (item.ProjeTuru.Equals((byte)Enums.ProjeTuru.Istihdam))
+							@if (item.ProjeTuru.Equals((int)Enums.ProjeTuru.Istihdam))
 							{
 								<div class="col-sm-4 col-md-4" style="padding-bottom:30px;">
 	  		<div class="step text-center border-info bg-info white">
@@ -123,7 +112,7 @@
 				<h3>1</h3>
 				  <h4 class="title">@item.Ad</h4>
 				</div>
-											@if (item.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.tamamlanmadi))
+											@if (item.ProjeDurumu.Equals((int)Enums.ProjeDurumu.tamamlanmadi))
 											{
 												<p style="height:50px;">Gerçekleştirilecek Proje<br>
 													<strong></strong></p>
@@ -157,7 +146,7 @@
 <div class="row steps steps-apart">			  
 				
 	  @foreach (var item in Model){
-							@if (item.ProjeTuru.Equals((byte)Enums.ProjeTuru.Turizm))
+							@if (item.ProjeTuru.Equals((int)Enums.ProjeTuru.Turizm))
 							{
 								<div class="col-sm-4 col-md-4" style="padding-bottom:30px;">
 	  		<div class="step text-center border-info bg-info white">
@@ -166,7 +155,7 @@
 				<h3>1</h3>
 				  <h4 class="title">@item.Ad</h4>
 				</div>
-											@if (item.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.tamamlanmadi))
+											@if (item.ProjeDurumu.Equals((int)Enums.ProjeDurumu.tamamlanmadi))
 											{
 												<p style="height:50px;">Gerçekleştirilecek Proje<br>
 													<strong></strong></p>
@@ -190,7 +179,7 @@
   <div class="container">
   
 	    @foreach (var item in Model){
-							@if (item.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sehircilik))
+							@if (item.ProjeTuru.Equals((int)Enums.ProjeTuru.Sehircilik))
 							{
 								<div class="col-sm-4 col-md-4" style="padding-bottom:30px;">
 	  		<div class="step text-center border-info bg-info white">
@@ -199,7 +188,7 @@
 				<h3>1</h3>
 				  <h4 class="title">@item.Ad</h4>
 				</div>
-											@if (item.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.tamamlanmadi))
+											@if (item.ProjeDurumu.Equals((int)Enums.ProjeDurumu.tamamlanmadi))
 											{
 												<p style="height:50px;">Gerçekleştirilecek Proje<br>
 													<strong></strong></p>
@@ -222,7 +211,7 @@
   
 		
   @foreach (var item in Model){
-							@if (item.ProjeTuru.Equals((byte)Enums.ProjeTuru.Egitim))
+							@if (item.ProjeTuru.Equals((int)Enums.ProjeTuru.Egitim))
 							{
 								<div class="col-sm-4 col-md-4" style="padding-bottom:30px;">
 	  		<div class="step text-center border-info bg-info white">
@@ -231,7 +220,7 @@
 				<h3>1</h3>
 				  <h4 class="title">@item.Ad</h4>
 				</div>
-											@if (item.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.tamamlanmadi))
+											@if (item.ProjeDurumu.Equals((int)Enums.ProjeDurumu.tamamlanmadi))
 											{
 												<p style="height:50px;">Gerçekleştirilecek Proje<br>
 													<strong></strong></p>
@@ -258,7 +247,7 @@
   
 
 	    @foreach (var item in Model){
-							@if (item.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sosyal))
+							@if (item.ProjeTuru.Equals((int)Enums.ProjeTuru.Sosyal))
 							{
 								<div class="col-sm-4 col-md-4" style="padding-bottom:30px;">
 	  		<div class="step text-center border-info bg-info white">
@@ -267,7 +256,7 @@
 				<h3>1</h3>
 				  <h4 class="title">@item.Ad</h4>
 				</div>
-											@if (item.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.tamamlanmadi))
+											@if (item.ProjeDurumu.Equals((int)Enums.ProjeDurumu.tamamlanmadi))
 											{
 												<p style="height:50px;">Gerçekleştirilecek Proje<br>
 													<strong></strong></p>
@@ -292,3 +281,5 @@
 				</div>
 
 			</div>
+</div>
+</div>

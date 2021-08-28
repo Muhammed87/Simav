@@ -23,17 +23,20 @@
 
 
 					
-
+					@{
+			var taziyeTarihleri = Model.GroupBy(x => x.Tarih);
+					}
 
 					<div class="row">
 						<div class="col-md-12">
 							<div id="popular11" class="tab-pane active">
 										
 										<ul class="nav nav-list primary push-bottom" style="margin-bottom:0px;">
-										@foreach (var item in Model){
-									<li><a asp-controller="Olum" asp-action="TaziyeDetayi" asp-route-id="@item.Tarih">@item.Tarih TARİHLİ VEFAT İLANLARI</a></li>
+										@foreach (var item in taziyeTarihleri){
+											
+									<li><a asp-controller="Olum" asp-action="TaziyeDetayi" asp-route-id="@item.Key">@Convert.ToDateTime(item.Key).ToShortDateString() TARİHLİ VEFAT İLANLARI</a></li>
 									}
-									
+							
 								</ul>
 									</div>
 						</div>

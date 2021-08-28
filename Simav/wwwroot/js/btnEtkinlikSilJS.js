@@ -20,41 +20,44 @@
 }
 
 function SilmeIslemi(id) {
-    $.ajax({
-        method: 'POST',
-        data: { pId: id },
-        url: '/Etkinlikler/EtkinlikSil',
-        beforeSend: function () {
+    setTimeout(function () {
+        $.ajax({
+            method: 'POST',
+            data: { pId: id },
+            url: '/Etkinlikler/EtkinlikSil',
+            beforeSend: function () {
 
-        }
-    }).done(function (veri) {
-        console.log(veri);
-        if (veri.basarili) {
-            SilmeBasarili(veri);
-        }
-        else {
-            SilmeBasarisiz(veri.mesaj);
-        }
+            }
+        }).done(function (veri) {
+            console.log(veri);
+            if (veri.basarili) {
+                SilmeBasarili(veri);
+            }
+            else {
+                SilmeBasarisiz(veri.mesaj);
+            }
 
-    }).fail(function () {
+        }).fail(function () {
 
-    }).always(function () {
+        }).always(function () {
 
-    });
+        });
+    }, 1000);
 }
 function SilmeBasarili(veri) {
-    swal({
-        title: "Uyarı",
-        text: "Silme işlemi Başarıyla Gerçekleşti!",
-        type: "warning",
-        showCancelButton: false, 
-        confirmButtonText: "Onayla", 
-        showLoaderOnConfirm: true 
-    }, function (isConfirm) {
-        location.reload();
-        
-    });
+    setTimeout(function () {
+        swal({
+            title: "Uyarı",
+            text: "Silme işlemi Başarıyla Gerçekleşti!",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonText: "Onayla",
+            showLoaderOnConfirm: true
+        }, function (isConfirm) {
+            location.reload();
 
+        });
+    }, 1000);
 }
 function SilmeBasarisiz(mesaj) {
     swal({

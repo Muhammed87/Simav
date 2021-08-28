@@ -13,7 +13,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="YeniHaber">Yeni Haber</a>
+    <a asp-action="YeniHaber" class="btn btn-primary">Yeni Haber</a>
 </p>
 <table class="table table-responsive">
     <thead>
@@ -29,6 +29,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
             </th>
             <th></th>
         </tr>
@@ -49,9 +52,12 @@
                 @Html.DisplayFor(modelItem => item.Tarih)
             </td>
             <td>
-                <a asp-action="HaberGuncelle" asp-route-id="@item.HaberlerId" class="btn btn-primary">Edit</a>
-                <a asp-action="HaberDetaylar" asp-route-id="@item.HaberlerId" class="btn btn-info">Details</a>
-                <button type="button" value="@item.HaberlerId" onclick="btnHaberSil(this.value)" class="btn btn-danger" >Delete</button> 
+                <input checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
+            </td>
+            <td>
+                <a asp-action="HaberGuncelle" asp-route-id="@item.HaberlerId" class="btn btn-primary">Güncelle</a>
+                <a asp-action="HaberDetaylar" asp-route-id="@item.HaberlerId" class="btn btn-info">Detaylar</a>
+                <button type="button" value="@item.HaberlerId" onclick="btnHaberSil(this.value)" class="btn btn-danger" >Sil</button> 
             </td>
         </tr>
 }

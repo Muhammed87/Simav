@@ -51,7 +51,7 @@ namespace Simav.Controllers
         }
         [AutFilter]
         [HttpGet]
-        public IActionResult YeniProjeler()
+        public IActionResult YeniVideo()
         {
             ViewBag.Baslik = "Yeni Video";
             return View();

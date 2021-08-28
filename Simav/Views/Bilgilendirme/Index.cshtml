@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tarih)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -47,6 +50,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                <input checked="@Convert.ToBoolean(item.Onay)" type="checkbox" />
             </td>
             <td>
                 <a class="btn btn-primary" asp-action="BilgilendirmeGuncelle" asp-route-id="@item.BilgilendirmeId">Güncelle</a>

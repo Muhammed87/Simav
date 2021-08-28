@@ -19,19 +19,28 @@ namespace Simav.Controllers
         }
         public IActionResult ProjeSayfasi()
         {
+
             var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif));
-            ViewBag.TamamlananProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi)).Count;
-            ViewBag.ProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)).Count;
-            ViewBag.TamamlananIstihdamProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Istihdam)).Count;
-            ViewBag.IstihdamProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Istihdam)).Count;
-            ViewBag.TamamlananEgitimProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Egitim)).Count;
-            ViewBag.EgitimProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Egitim)).Count;
-            ViewBag.TamamlananSehircilikProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sehircilik)).Count;
-            ViewBag.SehircilikProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sehircilik)).Count;
-            ViewBag.TamamlananSosyalProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sosyal)).Count;
-            ViewBag.SosyalProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Sosyal)).Count;
-            ViewBag.TamamlanaTurizmProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Turizm)).Count;
-            ViewBag.TurizmProjeSayisi = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.ProjeTuru.Equals((byte)Enums.ProjeTuru.Turizm)).Count;
+            var tamamlananProjeler= entity.Where(x => x.ProjeDurumu.Equals((byte)Enums.ProjeDurumu.Tamamlandi));
+            float TamamlananProjeSayisi = tamamlananProjeler.Count();
+            float ProjeSayisi= entity.Count();
+            ViewBag.TamamlananProjeYuzdesi = (TamamlananProjeSayisi / ProjeSayisi)*100;
+            float TamamlananIstihdamProjeSayisi = tamamlananProjeler.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Istihdam)).Count();
+            float IstihdamProjeSayisi = entity.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Istihdam)).Count();
+            ViewBag.TamamlananIstihdamProjeYuzdesi = (TamamlananIstihdamProjeSayisi / IstihdamProjeSayisi)*100;
+            float TamamlananEgitimProjeSayisi = tamamlananProjeler.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Egitim)).Count();
+            float EgitimProjeSayisi = entity.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Egitim)).Count();
+            ViewBag.TamamlananEgitimProjeYuzdesi = (TamamlananEgitimProjeSayisi / EgitimProjeSayisi) * 100;
+            float TamamlananTurizmProjeSayisi = tamamlananProjeler.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Turizm)).Count();
+            float TurizmProjeSayisi= entity.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Turizm)).Count();
+            ViewBag.TamamlananTurizmProjeYuzdesi = (TamamlananTurizmProjeSayisi / TurizmProjeSayisi) * 100;
+            float TamamlananSosyalProjeSayisi = tamamlananProjeler.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Sosyal)).Count();
+            float SosyalProjeSayisi= entity.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Sosyal)).Count();
+            ViewBag.TamamlananSosyalProjeYuzdesi = (TamamlananSosyalProjeSayisi / SosyalProjeSayisi) * 100;
+            float TamamlananSehircilikProjeSayisi = tamamlananProjeler.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Sehircilik)).Count();
+            float SehircilikProjeSayisi = entity.Where(x => x.ProjeTuru.Equals((int)Enums.ProjeTuru.Sehircilik)).Count();
+            ViewBag.TamamlananSehircilikProjeYuzdesi = (TamamlananSehircilikProjeSayisi / SehircilikProjeSayisi) * 100;
+            
             return View(entity);
         }
         public IActionResult FaaliyetRaporu()

@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="PersonelGuncelle">
+        <form asp-action="PersonelGuncelle" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="PersonelId" />
             <div class="form-group">
@@ -46,9 +46,8 @@
                 <span asp-validation-for="Unvan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Resim" class="control-label"></label>
-                <input asp-for="Resim" class="form-control" />
-                <span asp-validation-for="Resim" class="text-danger"></span>
+                <label for="formFile" asp-for="Resim" class="form-label">Dosyaları Seç</label>
+                <input name="uploaded_File" asp-for="Resim" class="form-control" type="file" id="formFile" accept="image/*">
             </div>
             <div class="form-group">
                 <label asp-for="Tel" class="control-label"></label>
@@ -83,6 +82,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Listeye Geri Dön</a>
 </div>
 
