@@ -1,0 +1,59 @@
+﻿@model Simav.Models.Personel
+<!-- #include file="ust.asp" -->
+
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+									<li class="active">@Model.AdSoyad Özgeçmiş</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container" style="background-color:#FFFFFF;">
+			<!-- YAZI BÖLÜMÜ -->
+<!-- YAZI BÖLÜMÜ -->
+
+<!-- YAZI BÖLÜMÜ -->
+<section id="main">
+  
+  <div class="container">
+    
+			
+			<div id="myTabContent" class="tab-content">
+			  <div class="tab-pane fade active in" id="home">
+				<p><img src="~/images/Personel_Image/@Model.Resim" width="225" height="250" style="margin-right:10px;" align="left"/>
+
+			
+				<br >
+				@Html.Raw(Model.Cv)</p><br><br><br><br>
+			  </div>
+			  <div class="navbar-collapse nav-main-collapse collapse">
+					<div class="container">
+						<ul class="social-icons">
+							<li class="facebook"><a href="@Model.Fb" target="_blank" title="Facebook">Facebook</a></li>
+							<li class="twitter"><a href="@Model.Tw" target="_blank" title="Twitter">Twitter</a></li>
+						</ul>
+		  
+		  
+		  
+	   </div>
+			  </div>
+		  
+  </div><!-- .container -->
+</section>
+<!-- .YAZI BÖLÜMÜ -->
+
+		  
+      
+ </div>
+	 </div>	  
+ </div>
+
+

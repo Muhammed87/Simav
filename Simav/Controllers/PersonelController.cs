@@ -23,6 +23,20 @@ namespace Simav.Controllers
             _hostEnvironment = hostEnvironment;
             _service = service;
         }
+        public IActionResult PersonelCv(int? id)
+        {
+            ViewBag.Baslik = "Personel Detayları";
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+            return View(entity);
+        }
         public IActionResult BaskanYardimcilari()
         {
             var entity = _service.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskaniYardimcisi));

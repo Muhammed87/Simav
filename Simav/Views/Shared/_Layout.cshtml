@@ -236,12 +236,11 @@
 						<div class="col-md-3">
 							<div class="newsletter">
 								<h4>Linkler</h4>
-								<p><a href="haberler.asp">Haberler</a><br>
-								<a href="Duyurular.asp">Duyurular</a><br>
-								<a href="ihaleler.asp">İhaleler</a><br>
-								<a href="Vefatlar.asp">Vefat İlanları</a><br></p>
-			
-								
+								<p>
+								<a asp-controller="Haberler" asp-action="HaberListesi" >Haberler</a><br>
+								<a asp-controller="Duyuru" asp-action="DuyuruListesi" >Duyurular</a><br>
+								<a asp-controller="Ihaleler" asp-action="IhaleListesi" >İhaleler</a><br>
+								<a asp-controller="Olum" asp-action="TaziyeListesi" >Vefat İlanları</a><br>
 			
 								<div class="alert alert-danger hidden" id="newsletterError"></div>
 			
@@ -298,7 +297,7 @@ response.write(Year(date))
 								<nav id="sub-menu">
 									<ul>
 										<li><a href="birimtelefon.asp">Birim Telefonları</a></li>
-										<li><a href="iletisim.asp">İletişim</a></li>
+										<li><a asp-controller="Sayfalar" asp-action="Iletisim">İletişim</a></li>
 									</ul>
 								</nav>
 							</div>
