@@ -1,13 +1,14 @@
 ﻿@using Simav.Models
 @{
-	ViewData["Title"] = "Home Page";
-    var haberListesi=ViewData["Haberler"] as List<Haberler>;
-    var duyuruListesi=ViewData["Duyurular"] as List<Duyuru>;
-    var ihaleListesi=ViewData["Ihaleler"] as List<Ihaleler>;
-    var taziyeListesi=ViewData["Taziyeler"] as List<Olumler>;
-    var videoListesi=ViewData["Videolar"] as List<Videolar>;
-    var etkinlikListesi=ViewData["Etkinlikler"] as List<Etkinlikler>;
-	var belediyeBaskani = ViewData["BelediyeBaskani"] as Personel;
+    ViewData["Title"] = "Home Page";
+    var haberListesi = ViewData["Haberler"] as List<Haberler>;
+    var duyuruListesi = ViewData["Duyurular"] as List<Duyuru>;
+    var ihaleListesi = ViewData["Ihaleler"] as List<Ihaleler>;
+    var taziyeListesi = ViewData["Taziyeler"] as List<Olumler>;
+    var videoListesi = ViewData["Videolar"] as List<Videolar>;
+    var etkinlikListesi = ViewData["Etkinlikler"] as List<Etkinlikler>;
+    var sayfalistesi = ViewData["Sayfalar"] as List<Sayfalar>;
+    var belediyeBaskani = ViewData["BelediyeBaskani"] as Personel;
 }
 <!-- #include file="ust.asp" -->
 
@@ -21,9 +22,9 @@
 								>
 									<div id="nivoSlider" class="nivoSlider">
 										@foreach (var item in haberListesi)
-										{
+                                        {
 											<img src="~/images/Haber_Image/@item.Resim" data-thumb="~/images/Haber_Image/@item.Resim" alt="" style="height:400px; width:1150;"/>
-											}
+                                        }
 									
 									</div>
 									<div id="htmlcaption" class="nivo-html-caption"></div>
@@ -36,6 +37,8 @@
 
 				<div class="container">
 					<div class="row ">
+						@if (belediyeBaskani != null)
+						{
 							<div class="portfolio-item  col-md-3">
 									<a href="#" class="thumb-info">
 										<img alt="" class="img-responsive" src="~/images/Personel_Image/@belediyeBaskani.Resim">
@@ -45,6 +48,19 @@
 										</span>
 									</a>
 								</div>
+                        }
+                        else
+                        {
+							<div class="portfolio-item  col-md-3">
+									<a href="#" class="thumb-info">
+										<img alt="" class="img-responsive" src="#">
+										<span class="thumb-info-title">
+											<span class="thumb-info-inner">Ad Soyad</span>
+											<span class="thumb-info-type">Unvan</span>
+										</span>
+									</a>
+								</div>
+                        }
 								<div class="col-md-9">
 							<div class="tabs tabs-vertical tabs-left">
 								<ul class="nav nav-tabs col-sm-3">
@@ -237,7 +253,9 @@
 										<img alt="" class="img-responsive" src="img/ortalink/1.png">
 										
 									</a>
-								</div><div class="portfolio-item  col-md-2">
+								</div>
+							
+							<div class="portfolio-item  col-md-2">
 									<a href="bilgilendirme.asp" " class="thumb-info">
 										<img alt="" class="img-responsive" src="img/ortalink/2.png">
 										

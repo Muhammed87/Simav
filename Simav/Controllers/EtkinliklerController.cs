@@ -22,6 +22,19 @@ namespace Simav.Controllers
             _hostEnvironment = hostEnvironment;
             _service = service;
         }
+        public IActionResult EtkinlikDetayi(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var entity = _service.GetById(id.Value);
+            if (entity == null)
+            {
+                return NotFound();//Bulunamadı
+            }
+            return View(entity);
+        }
         [AutFilter]
         [HttpGet]
         public IActionResult Index()

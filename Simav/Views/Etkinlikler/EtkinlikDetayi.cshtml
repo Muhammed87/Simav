@@ -1,0 +1,42 @@
+﻿@model Simav.Models.Etkinlikler
+
+@{
+    ViewData["Title"] = "EtkinlikDetayi";
+}
+
+<div role="main" class="main">
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                        <li class="active">Etkinlikler</li>
+                        <li class="active">@Model.EtkinlikAdi</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.EtkinlikAdi</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container" style="background-color:#FFFFFF;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-posts">
+                    <article class="pos">
+                        <h2>@Model.EtkinlikAdi</h2>
+                        @Html.Raw(Model.Icerik)
+                        <div class="post-meta">
+                            <span class="pull-right"><i class="fa fa-calendar"></i> @Model.KayıtTarihi </span>
+                            <span>&nbsp;</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

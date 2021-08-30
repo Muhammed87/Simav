@@ -21,7 +21,8 @@ namespace Simav.Controllers
         private readonly IService<Videolar> _videolar;
         private readonly IService<Etkinlikler> _etkinlikler;
         private readonly IService<Personel> _belediyeBaskani;
-        public HomeController(ILogger<HomeController> logger, IService<Haberler> haber, IService<Duyuru> duyuru, IService<Ihaleler> ihale, IService<Olumler> olumler, IService<Videolar> videolar, IService<Etkinlikler> etkinlikler,IService<Personel> belediyeBaskani)
+        private readonly IService<Sayfalar> _sayfalistesi;
+        public HomeController(ILogger<HomeController> logger, IService<Haberler> haber, IService<Duyuru> duyuru, IService<Ihaleler> ihale, IService<Olumler> olumler, IService<Videolar> videolar, IService<Etkinlikler> etkinlikler,IService<Personel> belediyeBaskani,IService<Sayfalar> Sayfalistesi)
         {
             _duyuru = duyuru;
             _haber = haber;
@@ -30,6 +31,7 @@ namespace Simav.Controllers
             _videolar = videolar;
             _etkinlikler = etkinlikler;
             _belediyeBaskani = belediyeBaskani;
+            _sayfalistesi = Sayfalistesi; 
             _logger = logger;
         }
 
@@ -56,6 +58,9 @@ namespace Simav.Controllers
             Personel belediyeBaskani = _belediyeBaskani.Find(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif) && x.Statu.Equals((byte)Enums.Statu.BelediyeBaskani));
             duyuruListesi.Reverse();
             ViewData["BelediyeBaskani"] = belediyeBaskani;
+            List<Sayfalar> sayfalistesi = _sayfalistesi.FindAll(x => x.Durum.Equals((byte)Enums.KayitDurumu.Aktif)&&x.SayfaTipi.Equals((byte)Enums.SayfaTipi.AnaSayfa));
+            sayfalistesi.Reverse();
+            ViewData["Sayfalar"] = sayfalistesi;
 
             return View();
         }
@@ -65,6 +70,10 @@ namespace Simav.Controllers
             return View();
         }
 
+        public IActionResult YatirimDestek()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
