@@ -283,21 +283,18 @@ info@simav.bel.tr</a></p></li>
 					<div class="container">
 						<div class="row">
 							<div class="col-md-1">
-								<a href="default.asp" class="logo">
-									<img alt="Porto Website Template" class="img-responsive" src="img/logo-footer.png">
+								<a asp-controller="Home" asp-action="Index" class="logo">
+									<img alt="Porto Website Template" class="img-responsive" src="~/img/logo-footer.png">
 								</a>
 							</div>
 							<div class="col-md-7">
-								<p>Simav Belediyesi - Bilgi İşlem © <%
-
-response.write(Year(date))
-
+								<p>Simav Belediyesi - Bilgi İşlem © @DateTime.Now.Year
 %></p>
 							</div>
 							<div class="col-md-4">
 								<nav id="sub-menu">
 									<ul>
-										<li><a href="birimtelefon.asp">Birim Telefonları</a></li>
+										<li><a asp-controller="Sayfalar" asp-action="SayfaIcerigi" asp-route-id="1003">Birim Telefonları</a></li>
 										<li><a href="iletisim.asp">İletişim</a></li>
 									</ul>
 								</nav>

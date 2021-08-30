@@ -31,7 +31,8 @@ namespace Simav.Common
         {
             Kurum = 1,
             Ilcemiz = 2,
-            Iletisim = 3
+            Iletisim = 3,
+            AnaSayfa = 4
         }
         public enum GundemTuru
         {
